@@ -12,6 +12,7 @@
       --bg-page: #FFFFFF;
       --bg-hero: #EEF2F6;
       --bg-subtle: #F8FAFC;
+      --bg-card: #FFFFFF;
       --ink-primary: #111827;
       --ink-secondary: #374151;
       --ink-muted: #6B7280;
@@ -30,8 +31,16 @@
       --danger-ink: #991B1B;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--ink-primary);
@@ -41,7 +50,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Top Navigation */
+    /* Top Editorial Header & Stepper Navigation */
     header.top-nav {
       position: sticky;
       top: 0;
@@ -50,6 +59,7 @@
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border-strong);
     }
+
     .nav-container {
       max-width: 1120px;
       margin: 0 auto;
@@ -60,192 +70,836 @@
       justify-content: space-between;
       gap: 16px;
     }
-    .brand-mark { display: flex; flex-direction: column; text-decoration: none; color: var(--ink-primary); }
-    .brand-mark .org { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--csg-navy); }
-    .brand-mark .sub { font-family: 'Playfair Display', Georgia, serif; font-size: 16px; font-weight: 600; }
-    .stepper-nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+    .brand-mark {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .brand-mark .org {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--csg-navy);
+    }
+
+    .brand-mark .sub {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .stepper-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
     .step-link {
-      display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px;
-      text-decoration: none; color: var(--ink-secondary); font-size: 13px; font-weight: 500;
-      border-radius: 999px; transition: all 0.18s ease; border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      text-decoration: none;
+      color: var(--ink-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 999px;
+      transition: all 0.18s ease;
+      border: 1px solid transparent;
     }
+
     .step-link .dot {
-      width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--ink-muted);
-      display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid var(--ink-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+      transition: all 0.18s ease;
     }
-    .step-link:hover { color: var(--csg-royal); background: var(--bg-subtle); }
-    .step-link.active { color: var(--csg-royal); background: var(--csg-royal-light); border-color: rgba(0, 86, 179, 0.25); font-weight: 600; }
-    .step-link.active .dot { background: var(--csg-royal); border-color: var(--csg-royal); color: #FFFFFF; }
-    .step-connector { width: 18px; height: 1px; background: var(--border-light); }
 
-    /* Hero */
-    .hero { background-color: var(--bg-hero); border-bottom: 1px solid var(--border-strong); position: relative; overflow: hidden; }
+    .step-link:hover {
+      color: var(--csg-royal);
+      background: var(--bg-subtle);
+    }
+
+    .step-link.active {
+      color: var(--csg-royal);
+      background: var(--csg-royal-light);
+      border-color: rgba(0, 86, 179, 0.25);
+      font-weight: 600;
+    }
+
+    .step-link.active .dot {
+      background: var(--csg-royal);
+      border-color: var(--csg-royal);
+      color: #FFFFFF;
+    }
+
+    .step-connector {
+      width: 18px;
+      height: 1px;
+      background: var(--border-light);
+    }
+
+    /* Editorial Hero Section */
+    .hero {
+      background-color: var(--bg-hero);
+      border-bottom: 1px solid var(--border-strong);
+      position: relative;
+      overflow: hidden;
+    }
+
     .hero-inner {
-      max-width: 1120px; margin: 0 auto; padding: 60px 24px 56px;
-      display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 32px; align-items: center;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 64px 24px 60px;
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 32px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
     }
-    .hero-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--csg-royal); margin-bottom: 12px; }
-    .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(30px, 4vw, 44px); line-height: 1.15; font-weight: 600; margin-bottom: 16px; }
-    .hero p.lead { font-size: 16px; color: var(--ink-secondary); max-width: 620px; margin-bottom: 18px; }
-    .hero-closing { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 20px; font-weight: 600; color: var(--csg-royal); }
-    .hero-circles { display: flex; align-items: center; justify-content: center; }
-    .hero-circles svg { width: 240px; height: 240px; opacity: 0.85; }
 
-    /* Main Content */
-    main.content-wrap { max-width: 1120px; margin: 0 auto; padding: 40px 24px 96px; }
-    section.page-section { display: none; animation: fadeIn 0.22s ease; }
-    section.page-section.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--csg-royal);
+      margin-bottom: 14px;
+    }
 
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(32px, 4.2vw, 46px);
+      line-height: 1.15;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 18px;
+    }
+
+    .hero p.lead {
+      font-size: 16px;
+      color: var(--ink-secondary);
+      max-width: 620px;
+      margin-bottom: 20px;
+    }
+
+    .hero-closing {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--csg-royal);
+    }
+
+    .hero-circles {
+      position: relative;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-circles svg {
+      width: 260px;
+      height: 260px;
+      opacity: 0.85;
+    }
+
+    /* Main Container & Sections */
+    main.content-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 24px 96px;
+    }
+
+    section.page-section {
+      display: none;
+      animation: fadeIn 0.22s ease;
+    }
+
+    section.page-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Editorial Section Headers */
     .section-header {
-      border-bottom: 1.5px solid var(--border-strong); padding-bottom: 16px; margin-bottom: 32px;
-      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px;
+      border-bottom: 1.5px solid var(--border-strong);
+      padding-bottom: 16px;
+      margin-bottom: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
     }
-    .section-num { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--csg-royal); display: block; margin-bottom: 4px; }
-    .section-header h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 30px; font-weight: 600; line-height: 1.2; }
-    .section-subtitle { font-size: 14px; color: var(--ink-muted); max-width: 520px; }
 
-    .part-block { margin-bottom: 50px; }
+    .section-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--csg-royal);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--ink-muted);
+      max-width: 520px;
+    }
+
+    /* Part Dividers inside a Section */
+    .part-block {
+      margin-bottom: 52px;
+    }
+
     .part-heading {
-      border-top: 1px solid var(--border-strong); padding-top: 14px; margin-bottom: 20px;
-      display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px;
+      border-top: 1px solid var(--border-strong);
+      padding-top: 14px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
     }
-    .part-heading h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 600; }
-    .part-heading h3 span.blue { color: var(--csg-royal); }
-    .part-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); }
 
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .editorial-col { border-top: 1px solid var(--border-strong); padding-top: 14px; }
-    .editorial-col h4 { font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
-    .editorial-col.blue-accent h4 { color: var(--csg-royal); }
-    .editorial-col p, .editorial-col li { font-size: 14px; color: var(--ink-secondary); }
-    .editorial-col ul { padding-left: 18px; margin-top: 6px; }
-    .editorial-col li { margin-bottom: 6px; }
+    .part-heading h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
 
-    .callout { background: var(--bg-subtle); border-left: 3px solid var(--csg-royal); padding: 15px 18px; margin: 16px 0; font-size: 14px; color: var(--ink-secondary); }
-    .callout.warn { background: var(--warn-bg); border-left-color: var(--csg-gold); color: var(--warn-ink); }
-    .callout strong { color: var(--ink-primary); }
-    .callout.warn strong { color: #78350F; }
+    .part-heading h3 span.blue {
+      color: var(--csg-royal);
+    }
 
-    .table-wrap { overflow-x: auto; border: 1px solid var(--border-light); margin: 16px 0; }
-    table { width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left; }
-    thead { background: var(--bg-hero); border-bottom: 1.5px solid var(--border-strong); }
-    th { padding: 12px 14px; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
-    td { padding: 12px 14px; border-bottom: 1px solid var(--border-subtle); color: var(--ink-secondary); vertical-align: top; }
-    tr:last-child td { border-bottom: none; }
+    .part-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
 
-    /* Toolbar & Buttons */
+    /* 2-Column & 3-Column Editorial Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .editorial-col {
+      border-top: 1px solid var(--border-strong);
+      padding-top: 14px;
+    }
+
+    .editorial-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      color: var(--ink-primary);
+    }
+
+    .editorial-col.blue-accent h4 {
+      color: var(--csg-royal);
+    }
+
+    .editorial-col p, .editorial-col li {
+      font-size: 14px;
+      color: var(--ink-secondary);
+    }
+
+    .editorial-col ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+
+    .editorial-col li {
+      margin-bottom: 6px;
+    }
+
+    /* Callout & Info Boxes */
+    .callout {
+      background: var(--bg-subtle);
+      border-left: 3px solid var(--csg-royal);
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 14px;
+      color: var(--ink-secondary);
+    }
+
+    .callout.warn {
+      background: var(--warn-bg);
+      border-left-color: var(--csg-gold);
+      color: var(--warn-ink);
+    }
+
+    .callout strong {
+      color: var(--ink-primary);
+    }
+
+    .callout.warn strong {
+      color: #78350F;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-light);
+      margin: 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+
+    thead {
+      background: var(--bg-hero);
+      border-bottom: 1.5px solid var(--border-strong);
+    }
+
+    th {
+      padding: 12px 14px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--ink-secondary);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Toolbar for Service Modules */
     .module-toolbar {
-      display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
-      background: var(--bg-subtle); border: 1px solid var(--border-light); padding: 14px 18px; margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      padding: 14px 18px;
+      margin-bottom: 24px;
     }
-    .search-input { flex: 1; min-width: 240px; padding: 9px 14px; border: 1px solid var(--border-light); font-size: 14px; font-family: inherit; background: #FFFFFF; }
-    .search-input:focus { outline: none; border-color: var(--csg-royal); }
-    .toolbar-btns { display: flex; gap: 8px; flex-wrap: wrap; }
-    .btn-outline { padding: 8px 14px; font-size: 13px; font-weight: 600; background: #FFFFFF; color: var(--ink-primary); border: 1px solid var(--border-strong); cursor: pointer; }
-    .btn-outline:hover { background: var(--ink-primary); color: #FFFFFF; }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 9px 14px;
+      border: 1px solid var(--border-light);
+      font-size: 14px;
+      font-family: inherit;
+      background: #FFFFFF;
+      color: var(--ink-primary);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--csg-royal);
+    }
+
+    .toolbar-btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-outline {
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #FFFFFF;
+      color: var(--ink-primary);
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-outline:hover {
+      background: var(--ink-primary);
+      color: #FFFFFF;
+    }
+
     .btn-primary {
-      padding: 9px 16px; font-size: 13px; font-weight: 600; background: var(--csg-royal); color: #FFFFFF;
-      border: 1px solid var(--csg-royal); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      background: var(--csg-royal);
+      color: #FFFFFF;
+      border: 1px solid var(--csg-royal);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease;
     }
-    .btn-primary:hover { background: var(--csg-navy); }
 
-    /* Module Cards */
-    .module-card { border: 1px solid var(--border-strong); background: #FFFFFF; margin-bottom: 28px; }
+    .btn-primary:hover {
+      background: var(--csg-navy);
+    }
+
+    /* Service Module Cards (Full Editorial Deep-Dive) */
+    .module-card {
+      border: 1px solid var(--border-strong);
+      background: #FFFFFF;
+      margin-bottom: 28px;
+    }
+
     .module-header {
-      padding: 18px 22px; background: var(--bg-hero); border-bottom: 1px solid var(--border-strong);
-      display: flex; justify-content: space-between; align-items: center; cursor: pointer; gap: 16px;
+      padding: 18px 22px;
+      background: var(--bg-hero);
+      border-bottom: 1px solid var(--border-strong);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      gap: 16px;
     }
-    .module-header:hover { background: #E4EBF2; }
-    .module-title-group { display: flex; flex-direction: column; gap: 4px; }
-    .module-badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-    .mod-num { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--csg-royal); }
-    .seat-pill { font-size: 11px; font-weight: 600; padding: 2px 8px; background: #FFFFFF; border: 1px solid var(--border-light); color: var(--ink-secondary); }
-    .module-header h4 { font-family: 'Playfair Display', Georgia, serif; font-size: 21px; font-weight: 600; }
-    .toggle-icon { font-size: 18px; font-weight: 700; color: var(--csg-royal); min-width: 24px; text-align: center; }
-    .module-body { padding: 24px 24px 28px; display: block; }
-    .module-card.collapsed .module-body { display: none; }
-    .module-card.collapsed .module-header { border-bottom: none; }
 
-    .mod-subblock { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-subtle); }
-    .mod-subblock:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .module-header:hover {
+      background: #E4EBF2;
+    }
+
+    .module-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .module-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mod-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--csg-royal);
+    }
+
+    .seat-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      color: var(--ink-secondary);
+    }
+
+    .module-header h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .toggle-icon {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--csg-royal);
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .module-body {
+      padding: 24px 24px 28px;
+      display: block;
+    }
+
+    .module-card.collapsed .module-body {
+      display: none;
+    }
+
+    .module-card.collapsed .module-header {
+      border-bottom: none;
+    }
+
+    .mod-subblock {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .mod-subblock:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
     .mod-subblock-title {
-      font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--csg-navy); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--csg-navy);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .mod-subblock-title span.step-tag { background: var(--csg-royal); color: #FFFFFF; padding: 2px 7px; font-size: 11px; }
 
-    .func-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .func-box { background: var(--bg-subtle); border: 1px solid var(--border-subtle); padding: 16px 18px; }
-    .func-box h5 { font-size: 13.5px; font-weight: 700; margin-bottom: 8px; }
-    .func-box.csg h5 { color: var(--csg-royal); }
-    .func-box p, .func-box li { font-size: 13.5px; color: var(--ink-secondary); }
-    .func-box ul { padding-left: 18px; margin-top: 6px; }
-    .func-box li { margin-bottom: 5px; }
+    .mod-subblock-title span.step-tag {
+      background: var(--csg-royal);
+      color: #FFFFFF;
+      padding: 2px 7px;
+      font-size: 11px;
+    }
 
-    .step-list { display: flex; flex-direction: column; gap: 14px; }
-    .step-item { border-left: 2px solid var(--csg-navy); padding-left: 16px; }
-    .step-item h5 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-    .step-item ol, .step-item ul { padding-left: 20px; font-size: 13.5px; color: var(--ink-secondary); }
-    .step-item li { margin-bottom: 5px; }
+    .func-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .func-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 18px;
+    }
+
+    .func-box h5 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+    }
+
+    .func-box.csg h5 {
+      color: var(--csg-royal);
+    }
+
+    .func-box p, .func-box li {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+    }
+
+    .func-box ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+
+    .func-box li {
+      margin-bottom: 5px;
+    }
+
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .step-item {
+      border-left: 2px solid var(--csg-navy);
+      padding-left: 16px;
+    }
+
+    .step-item h5 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+    }
+
+    .step-item ol, .step-item ul {
+      padding-left: 20px;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+    }
+
+    .step-item li {
+      margin-bottom: 5px;
+    }
 
     code.ui-path {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 12.5px; background: #F1F5F9; padding: 2px 6px; border: 1px solid #E2E8F0; color: var(--csg-navy); font-weight: 600;
+      font-size: 12.5px;
+      background: #F1F5F9;
+      padding: 2px 6px;
+      border: 1px solid #E2E8F0;
+      color: var(--csg-navy);
+      font-weight: 600;
     }
 
-    /* Permissions & Links Box */
-    .academy-links-box { background: var(--csg-royal-light); border: 1px solid rgba(0, 86, 179, 0.25); padding: 16px 18px; }
-    .perm-note {
-      background: #FFFFFF; border-left: 3px solid var(--csg-navy); padding: 10px 14px;
-      margin-bottom: 12px; font-size: 13.5px; color: var(--ink-secondary);
+    /* Links Box under each Module */
+    .academy-links-box {
+      background: var(--csg-royal-light);
+      border: 1px solid rgba(0, 86, 179, 0.25);
+      padding: 16px 18px;
     }
-    .academy-topic-header { font-size: 13.5px; font-weight: 700; color: var(--csg-navy); margin-bottom: 10px; }
-    .academy-links-box ul { list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 9px; }
-    .academy-links-box li { font-size: 13.5px; color: var(--ink-primary); display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; }
-    .academy-links-box a { color: var(--csg-royal); font-weight: 600; text-decoration: underline; word-break: break-all; }
-    .academy-links-box a:hover { color: var(--csg-navy); }
+
+    .academy-links-box ul {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .academy-links-box li {
+      font-size: 13.5px;
+      color: var(--ink-primary);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .academy-links-box a {
+      color: var(--csg-royal);
+      font-weight: 600;
+      text-decoration: underline;
+      word-break: break-word;
+    }
+
+    .academy-links-box a:hover {
+      color: var(--csg-navy);
+    }
+
     .link-type-badge {
-      font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
-      padding: 2px 6px; background: #FFFFFF; border: 1px solid rgba(0, 86, 179, 0.3); color: var(--csg-navy);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 6px;
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 86, 179, 0.3);
+      color: var(--csg-navy);
     }
 
-    /* Checklist & Quiz */
+    .keywords-line {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(0, 86, 179, 0.3);
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+    }
+
+    /* Interactive Checklist */
     .checklist-header-bar {
-      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;
-      margin-bottom: 16px; padding: 14px 18px; background: var(--bg-hero); border: 1px solid var(--border-strong);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 14px 18px;
+      background: var(--bg-hero);
+      border: 1px solid var(--border-strong);
     }
-    .progress-track { width: 220px; height: 8px; background: #CBD5E1; overflow: hidden; }
-    .progress-fill { height: 100%; background: var(--csg-royal); width: 0%; transition: width 0.25s ease; }
-    .phase-group { border: 1px solid var(--border-light); margin-bottom: 16px; padding: 16px 20px; }
-    .phase-group h4 { font-size: 14px; font-weight: 700; color: var(--csg-navy); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .check-row { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 13.5px; color: var(--ink-secondary); cursor: pointer; }
-    .check-row input[type="checkbox"] { margin-top: 4px; width: 16px; height: 16px; accent-color: var(--csg-royal); cursor: pointer; }
-    .check-row.done span { text-decoration: line-through; color: var(--ink-muted); }
 
-    .quiz-box { border: 1px solid var(--border-strong); padding: 24px; background: var(--bg-subtle); }
-    .quiz-q { background: #FFFFFF; border: 1px solid var(--border-light); padding: 16px 18px; margin-bottom: 16px; }
-    .quiz-q p.q-title { font-weight: 700; font-size: 14.5px; margin-bottom: 10px; }
-    .quiz-opt { display: flex; align-items: flex-start; gap: 10px; padding: 7px 10px; margin-bottom: 6px; font-size: 13.5px; cursor: pointer; }
-    .quiz-opt:hover { background: var(--bg-subtle); }
-    .quiz-feedback { margin-top: 8px; font-size: 13px; font-weight: 500; padding: 8px 12px; display: none; }
-    .quiz-feedback.correct { display: block; background: var(--success-bg); color: var(--success-ink); border-left: 3px solid #059669; }
-    .quiz-feedback.wrong { display: block; background: var(--danger-bg); color: var(--danger-ink); border-left: 3px solid #DC2626; }
-    .quiz-score-banner { margin-top: 16px; padding: 14px 18px; background: var(--csg-navy); color: #FFFFFF; font-weight: 600; display: none; }
+    .progress-track {
+      width: 220px;
+      height: 8px;
+      background: #CBD5E1;
+      overflow: hidden;
+    }
 
-    .template-card { border: 1.5px dashed var(--csg-royal); background: var(--bg-subtle); padding: 28px; margin-bottom: 24px; }
-    footer.editorial-footer { border-top: 1.5px solid var(--border-strong); background: var(--bg-hero); padding: 28px 24px; text-align: center; font-size: 13px; color: var(--ink-muted); }
+    .progress-fill {
+      height: 100%;
+      background: var(--csg-royal);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .phase-group {
+      border: 1px solid var(--border-light);
+      margin-bottom: 16px;
+      padding: 16px 20px;
+    }
+
+    .phase-group h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--csg-navy);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      cursor: pointer;
+    }
+
+    .check-row input[type="checkbox"] {
+      margin-top: 4px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--csg-royal);
+      cursor: pointer;
+    }
+
+    .check-row.done span {
+      text-decoration: line-through;
+      color: var(--ink-muted);
+    }
+
+    /* Interactive Quiz */
+    .quiz-box {
+      border: 1px solid var(--border-strong);
+      padding: 24px;
+      background: var(--bg-subtle);
+    }
+
+    .quiz-q {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-q p.q-title {
+      font-weight: 700;
+      font-size: 14.5px;
+      color: var(--ink-primary);
+      margin-bottom: 10px;
+    }
+
+    .quiz-opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 10px;
+      margin-bottom: 6px;
+      border: 1px solid transparent;
+      font-size: 13.5px;
+      cursor: pointer;
+    }
+
+    .quiz-opt:hover {
+      background: var(--bg-subtle);
+    }
+
+    .quiz-feedback {
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 12px;
+      display: none;
+    }
+
+    .quiz-feedback.correct {
+      display: block;
+      background: var(--success-bg);
+      color: var(--success-ink);
+      border-left: 3px solid #059669;
+    }
+
+    .quiz-feedback.wrong {
+      display: block;
+      background: var(--danger-bg);
+      color: var(--danger-ink);
+      border-left: 3px solid #DC2626;
+    }
+
+    .quiz-score-banner {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: var(--csg-navy);
+      color: #FFFFFF;
+      font-weight: 600;
+      display: none;
+    }
+
+    /* Colleague Placeholder Template Box */
+    .template-card {
+      border: 1.5px dashed var(--csg-royal);
+      background: var(--bg-subtle);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    footer.editorial-footer {
+      border-top: 1.5px solid var(--border-strong);
+      background: var(--bg-hero);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
 
     @media (max-width: 840px) {
-      .hero-inner, .grid-3, .grid-4, .func-grid { grid-template-columns: 1fr; }
-      .hero-circles, .step-connector { display: none; }
+      .hero-inner, .grid-2, .grid-3, .grid-4, .func-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-circles {
+        display: none;
+      }
+      .step-connector {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation -->
+  <!-- Top Editorial Stepper Navigation -->
   <header class="top-nav">
     <div class="nav-container">
       <a href="#home" class="brand-mark" onclick="navigateTo('home')">
@@ -272,7 +926,7 @@
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Editorial Hero -->
   <section class="hero">
     <div class="hero-inner">
       <div>
@@ -299,6 +953,7 @@
     </div>
   </section>
 
+  <!-- Main Content -->
   <main class="content-wrap">
 
     <!-- =====================================================================
@@ -345,10 +1000,13 @@
           <h3>The Golden Data Rule: <span class="blue">4 Linked CRM Objects</span></h3>
           <span class="part-tag">Core Database Logic</span>
         </div>
+        <p style="margin-bottom:16px; color:var(--ink-secondary);">
+          Everything in HubSpot revolves around four connected record types. Never store client updates in private spreadsheets or personal Gmail threads—always link records together:
+        </p>
         <div class="grid-4">
           <div class="editorial-col blue-accent">
             <h4>Contacts (People)</h4>
-            <p>Individual people (CEOs, VPs, Alumni) tracked by email address and segmented via <strong>Contact Type</strong> (Prospective Client, Active Client, Past Client, CSG Alumni).</p>
+            <p>Individual people (CEOs, VPs, Alumni). Tracked by email address. Use <strong>Contact Type</strong> (Prospective Client, Active Client, Past Client, CSG Alumni) to segment audiences.</p>
           </div>
           <div class="editorial-col">
             <h4>Companies (Organizations)</h4>
@@ -356,25 +1014,25 @@
           </div>
           <div class="editorial-col blue-accent">
             <h4>Deals (Projects &amp; Revenue)</h4>
-            <p>Tracks consulting engagements from Discovery Call to <em>Closed Won</em> ($2,500+ engagement scope, timeline, and deliverables).</p>
+            <p>Tracks potential and active consulting engagements from Discovery Call to <em>Closed Won</em> ($2,500+ engagement scope, timeline, and deliverables).</p>
           </div>
           <div class="editorial-col">
             <h4>Tickets (Service &amp; Support)</h4>
-            <p>Tracks ongoing client inquiries, data requests, scope changes, and post-project support inside the Service Hub Help Desk.</p>
+            <p>Tracks ongoing client questions, data requests, scope changes, and post-project support items inside the Service Hub Help Desk.</p>
           </div>
         </div>
 
         <div class="callout" style="margin-top:20px;">
-          <strong>The 3-Column Record Layout:</strong> Every Contact, Company, Deal, and Ticket displays three columns:
+          <strong>The 3-Column Record Layout:</strong> Whenever you open any Contact, Company, Deal, or Ticket in HubSpot, the screen has three columns:
           <strong>Left Column (Properties):</strong> Fixed fields like Revenue, Industry, Health Score, and Milestone Status.
-          <strong>Middle Column (Timeline):</strong> Chronological log of emails, call summaries, <em>Pinned Notes</em>, and Tasks.
+          <strong>Middle Column (Timeline):</strong> Chronological log of emails, Zoom summaries, <em>Pinned Notes</em>, and Tasks.
           <strong>Right Column (Associations):</strong> Connected contacts, companies, deals, tickets, and attached files (e.g., signed Engagement Letters).
         </div>
       </div>
 
       <div class="part-block">
         <div class="part-heading">
-          <h3>CSG License Architecture <span class="blue">&amp; Navigation</span></h3>
+          <h3>CSG License Architecture <span class="blue">&amp; First 20 Minutes Quick-Start</span></h3>
           <span class="part-tag">Access &amp; Onboarding</span>
         </div>
         <div class="table-wrap">
@@ -410,6 +1068,7 @@
             </tbody>
           </table>
         </div>
+
         <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
           <a href="#service" class="btn-primary" onclick="navigateTo('service')">Go to Section 4: Complete Service Hub Guide &rarr;</a>
           <a href="#marketing" class="btn-outline" onclick="navigateTo('marketing')">Marketing Hub Template</a>
@@ -431,11 +1090,12 @@
           Standardized intranet section for the Marketing team to document Forms, Workflows, SEO/AEO, Email, and Segmentation.
         </div>
       </div>
+
       <!-- COLLEAGUE EDIT AREA: MARKETING HUB -->
       <div class="template-card">
         <h3 style="font-family:'Playfair Display',Georgia,serif; font-size:20px; margin-bottom:8px;">Marketing Hub Section — Ready for Colleague Integration</h3>
         <p style="font-size:14px; color:var(--ink-secondary); margin-bottom:14px;">
-          Copy the standardized module card HTML below and paste your Marketing modules (Forms, Automated Emails, Social, SEO/AEO, Segments) here inside <code>&lt;section id="marketing"&gt;</code>.
+          This section uses the exact same editorial module structure as the Service Hub guide so all three CSG teams remain visually unified. Use the button below to copy the clean HTML module template and paste your Marketing modules (Forms, Automated Emails, Social, SEO/AEO, Segments) right here inside <code>&lt;section id="marketing"&gt;</code>.
         </p>
         <button class="btn-primary" onclick="copyModuleTemplate('Marketing')">Copy HTML Module Template</button>
         <span id="copy-msg-Marketing" style="margin-left:12px; font-size:13px; color:var(--success-ink); font-weight:600;"></span>
@@ -455,6 +1115,7 @@
           Standardized intranet section for the Sales team to document Deal Pipelines, Stage Gates, Meeting Links, and Proposal Tracking.
         </div>
       </div>
+
       <!-- COLLEAGUE EDIT AREA: SALES HUB -->
       <div class="template-card">
         <h3 style="font-family:'Playfair Display',Georgia,serif; font-size:20px; margin-bottom:8px;">Sales Hub Section — Ready for Colleague Integration</h3>
@@ -467,7 +1128,7 @@
     </section>
 
     <!-- =====================================================================
-         SECTION 4: COMPLETE SERVICE HUB GUIDE (#service)
+         SECTION 4: COMPLETE SERVICE HUB GUIDE (#service) — UNABRIDGED PDF CONTENT
     ====================================================================== -->
     <section id="service" class="page-section">
       <div class="section-header">
@@ -476,35 +1137,62 @@
           <h2>HubSpot Service Hub Professional Guide</h2>
         </div>
         <div class="section-subtitle">
-          Complete step-by-step manual for all 8 Service Hub modules—including descriptions, CSG applications, step-by-step setup, permissions, checklists, and exact HubSpot Academy &amp; Knowledge Base links.
+          Complete step-by-step manual for all 8 Service Hub tools—including General Functionality, CSG Applications, Setup Instructions, Permissions, Checklists, and all HubSpot Academy &amp; Knowledge Base links.
         </div>
       </div>
 
-      <!-- PART A: SERVICE FOUNDATIONS & LEARNING PLAYLIST -->
+      <!-- PART A: SERVICE FOUNDATIONS & PRO CAPABILITIES -->
       <div class="part-block">
         <div class="part-heading">
-          <h3>Part A — Service Hub Pro Foundations <span class="blue">&amp; Learning Path</span></h3>
-          <span class="part-tag">Overview &amp; Starting Point</span>
+          <h3>Part A — Service Hub Pro Overview <span class="blue">&amp; Cross-Team Rules</span></h3>
+          <span class="part-tag">Foundations &amp; Architecture</span>
         </div>
 
         <p style="margin-bottom:14px; color:var(--ink-secondary);">
-          <strong>Service Hub Professional</strong> is an AI-powered omnichannel solution connected on a central customer platform with Marketing and Sales data. It centers on three core pillars: <strong>resolving customer issues</strong> (Tickets &amp; Help Desk), <strong>enabling self-service</strong> (Knowledge Base &amp; Customer Portal), and <strong>measuring satisfaction</strong> (Feedback Surveys &amp; Service Analytics).
+          <strong>Service Hub Professional</strong> is an AI-powered omnichannel platform connected to our central CRM database. It centers on three core pillars: <strong>resolving client issues</strong> (Tickets &amp; Help Desk), <strong>enabling self-service</strong> (Knowledge Base &amp; Customer Portal), and <strong>measuring satisfaction</strong> (Feedback Surveys &amp; Analytics).
         </p>
 
         <div class="academy-links-box" style="margin-bottom:20px;">
-          <div class="academy-topic-header">Starting From Zero &amp; Complete 10-Step CSG Academy Playlist</div>
+          <strong style="display:block; margin-bottom:8px; color:var(--csg-navy); font-size:13px; text-transform:uppercase; letter-spacing:0.06em;">Recommended Starting Point &amp; Complete 10-Step Learning Playlist</strong>
           <ul>
             <li>
-              <span class="link-type-badge">Start Here</span>
-              <strong>Foundations of Service Hub Starter (Lesson, Adriti Gulati, ~22 min):</strong> Ideal starting point explaining Help Desk, team inboxes, live chat, tickets, and request prioritization &rarr;
+              <span class="link-type-badge">Start From Zero</span>
+              <strong>Foundations of Service Hub Starter (~22 min, Adriti Gulati):</strong> Ideal starting point explaining Help Desk setup, team inboxes, live chat, tickets, and prioritization &rarr;
               <a href="https://academy.hubspot.com/lessons/foundations-of-hubspot-service-hub-starter" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/foundations-of-hubspot-service-hub-starter</a>
             </li>
             <li>
-              <span class="link-type-badge">Full Playlist</span>
-              <strong>Complete 10-Step CSG Service Hub Learning Playlist (Foundations &rarr; Modules 1–8 &rarr; Service Hub Software Certification):</strong> &rarr;
+              <span class="link-type-badge">Full CSG Playlist</span>
+              <strong>Complete 10-Step CSG Service Hub Academy Playlist (Foundations &rarr; Modules 1–8 &rarr; Service Hub Software Certification):</strong> Save directly to your HubSpot Academy account &rarr;
               <a href="https://app-na2.hubspot.com/academy/241871229/saved-items/playlists/126368476?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/saved-items/playlists/126368476?ruid=169081879</a>
             </li>
           </ul>
+        </div>
+
+        <div class="grid-3">
+          <div class="editorial-col blue-accent">
+            <h4>What Pro Unlocks</h4>
+            <ul>
+              <li><strong>Tickets &amp; Automation:</strong> Custom pipelines, stage duration tracking, automated tasks, and SLA timers.</li>
+              <li><strong>Help Desk &amp; AI:</strong> Unified team workspace (email, forms, chat) with AI ticket summaries and routing.</li>
+              <li><strong>Self-Service &amp; Feedback:</strong> Multilingual Knowledge Base, Customer Portal, and automated NPS/CSAT/CES surveys.</li>
+            </ul>
+          </div>
+          <div class="editorial-col">
+            <h4>Real CSG Record Example (Alcomy)</h4>
+            <ul>
+              <li><strong>Company:</strong> <em>Alcomy</em> (Orem, UT; ARR &gt;$2M; SaaS for managed care).</li>
+              <li><strong>Contact:</strong> Ilija Vrajich (CEO, <code>ilija@alcomy.com</code>).</li>
+              <li><strong>Deal &amp; Pinned Note:</strong> $2,500 Customer Success SOP project, Phase 1–3 milestones, team roster, and attached Engagement Letter PDF.</li>
+            </ul>
+          </div>
+          <div class="editorial-col blue-accent">
+            <h4>3 Mandatory Handoff Rules</h4>
+            <ul>
+              <li><strong>Marketing &rarr; Service:</strong> Forms and Chatflows tag leads by Target Client Segment.</li>
+              <li><strong>Sales &rarr; Service:</strong> Every <em>Closed Won</em> deal must have a linked Primary Contact so Portal invites and NPS surveys trigger automatically.</li>
+              <li><strong>Service &rarr; Marketing:</strong> Every NPS score &ge; 9 is routed to Marketing Team 2 for case studies and testimonials.</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -518,62 +1206,106 @@
           <table>
             <thead>
               <tr>
-                <th style="width:22%;">Function / Module</th>
-                <th style="width:39%;">Possible in Free View-Only / Core Seat</th>
+                <th style="width:22%;">Module / Tool</th>
+                <th style="width:39%;">Possible with Free View-Only / Core Seat</th>
                 <th style="width:39%;">Requires Assigned Service Hub Pro Seat</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><strong>1. Help Desk</strong></td>
-                <td>Read tickets &amp; conversation histories, check status on records.</td>
-                <td>Create tickets, assign owners, reply directly from HubSpot, configure SLAs &amp; automations.</td>
+                <td>Read tickets, view communication threads, and check SLA status on Company/Contact records.</td>
+                <td>Create tickets, assign owners, reply directly from Help Desk, and configure SLAs &amp; pipeline automations.</td>
               </tr>
               <tr>
                 <td><strong>2. Customer Success</strong></td>
-                <td>View Health Scores &amp; pinned notes (and edit if CRM write rights are enabled).</td>
-                <td>Build escalation workflows &amp; filtered risk views <em>(Enterprise required for native workspace/automated scores)</em>.</td>
+                <td>View custom Health Scores, milestone properties, and pinned notes (and edit if CRM write permissions are enabled).</td>
+                <td>Build automated escalation workflows and filtered risk views. <em>(Note: Native Customer Success Workspace &amp; automated health scores require Enterprise; CSG uses the Pro workaround below).</em></td>
               </tr>
               <tr>
-                <td><strong>3. Customer Agent</strong></td>
-                <td>View AI chat transcripts &amp; handoff tickets.</td>
-                <td>Set up Breeze AI agent, connect documents/KB, and train unhandled questions (+ HubSpot Credits).</td>
+                <td><strong>3. Customer Agent (AI)</strong></td>
+                <td>View existing AI chat transcripts and human handoff tickets.</td>
+                <td>Activate Breeze AI agent, connect Knowledge Base/PDF sources, set handoff rules, and train unhandled questions.</td>
               </tr>
               <tr>
                 <td><strong>4. Chatflows</strong></td>
-                <td>View existing bots and chat logs.</td>
-                <td>Build and publish new website chatflows (Service Seat or Marketing Seat).</td>
+                <td>Inspect existing website bots and chat conversation logs.</td>
+                <td>Build new branching website bots, map CRM capture fields, configure meeting links, and publish widgets.</td>
               </tr>
               <tr>
                 <td><strong>5. Knowledge Base</strong></td>
-                <td>Read and search help articles and internal SOPs.</td>
-                <td>Write, categorize, publish articles, and set password protection.</td>
+                <td>Read and search public client FAQs and internal student SOP articles.</td>
+                <td>Create categories, write/publish articles, customize branding/domains, and manage password protection.</td>
               </tr>
               <tr>
                 <td><strong>6. Customer Portal</strong></td>
-                <td>View assigned portal contacts.</td>
-                <td>Configure Customer Portal domain/branding and invite clients.</td>
+                <td>View assigned portal contacts and client-visible ticket replies.</td>
+                <td>Configure portal domain/theme, set company-wide ticket visibility rules, and send client portal invitations.</td>
               </tr>
               <tr>
                 <td><strong>7. Feedback Surveys</strong></td>
-                <td>Read survey scores on Contact records; CSV import (with Import permission).</td>
-                <td>Build native CSAT/NPS/custom surveys and send them automatically.</td>
+                <td>View survey scores on Contact records; import historical CSV surveys (if Import permission is granted).</td>
+                <td>Build native CSAT/NPS/custom surveys and trigger automated post-project email workflows.</td>
               </tr>
               <tr>
                 <td><strong>8. Service Analytics</strong></td>
-                <td>View and filter existing reports and dashboards.</td>
-                <td>Build new Custom Reports and automated monthly PDF email exports.</td>
+                <td>View and filter all existing Service Analytics reports and Executive Dashboards.</td>
+                <td>Build new custom reports (including reports for CSV-imported surveys) and schedule recurring monthly PDF emails.</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- PART C: ALL 8 SERVICE HUB MODULES (EXACT CONTENT & EXACT LINKS) -->
+      <!-- PART C: END-TO-END LIFECYCLE & 9 GOLDEN PRACTICAL RULES -->
       <div class="part-block">
         <div class="part-heading">
-          <h3>Part C — All 8 Service Hub Training Modules <span class="blue">(Descriptions, Step-by-Step &amp; Links)</span></h3>
-          <span class="part-tag">Unabridged Reference Manual</span>
+          <h3>Part C — End-to-End Service Lifecycle <span class="blue">&amp; 9 Practical Rules</span></h3>
+          <span class="part-tag">How All 8 Tools Connect</span>
+        </div>
+
+        <div class="callout" style="margin-bottom:20px;">
+          <strong>End-to-End CSG Client Journey:</strong>
+          <strong>1. Website Visit:</strong> Visitor interacts with <em>Chatflow (Module 4)</em> to book a discovery call while <em>Customer Agent (Module 3)</em> answers FAQs using the <em>Knowledge Base (Module 5)</em> &rarr;
+          <strong>2. Deal Won:</strong> Client receives access to the <em>Customer Portal (Module 6)</em> and Team Lead sets <em>Customer Success Health Score (Module 2)</em> to Green &rarr;
+          <strong>3. Active Project:</strong> All client questions, data requests, and deliverables are tracked in <em>Help Desk (Module 1)</em> &rarr;
+          <strong>4. Project Close:</strong> <em>Feedback Surveys (Module 7)</em> sends an automated NPS/CSAT survey; scores &ge; 9 trigger testimonial outreach &rarr;
+          <strong>5. Semester Review:</strong> <em>Service Analytics (Module 8)</em> delivers response times and satisfaction KPIs to Leadership.
+        </div>
+
+        <div class="grid-3">
+          <div class="editorial-col">
+            <h4>Setup Order (Do This First)</h4>
+            <ul>
+              <li><strong>1. Channels Before Automation:</strong> Connect and test team email/forms in Help Desk before building SLAs or workflows.</li>
+              <li><strong>2. Knowledge Base Before AI Agent:</strong> Publish 15–20 solid articles before turning on the AI Customer Agent.</li>
+              <li><strong>3. Internal Test Before Live:</strong> Run test tickets, test bot chats, and test portal logins with your team before inviting real clients.</li>
+            </ul>
+          </div>
+          <div class="editorial-col blue-accent">
+            <h4>Data Quality From Day 1</h4>
+            <ul>
+              <li><strong>4. Ticket Naming Convention:</strong> Always use <code>[Client] &ndash; [Topic] &ndash; [Phase]</code> (e.g., <em>Alcomy &ndash; Data Request &ndash; Phase 2</em>).</li>
+              <li><strong>5. Required Company Fields:</strong> Make <em>CSG Client Health Score</em> and <em>Project Milestone Status</em> mandatory during onboarding.</li>
+              <li><strong>6. CSV Import Discipline:</strong> Use the exact same standardized CSV column template every semester for historical surveys.</li>
+            </ul>
+          </div>
+          <div class="editorial-col">
+            <h4>Team &amp; Cohort Handover</h4>
+            <ul>
+              <li><strong>7. Weekly Cadence:</strong> Check Help Desk (<em>Unassigned</em>) every morning; update Health Scores after client calls; review AI <em>Unhandled Questions</em> weekly.</li>
+              <li><strong>8. 30-Minute Semester Handover:</strong> Review all open tickets, pinned notes, and SLAs before cohort transition.</li>
+              <li><strong>9. Train Core-Seat Users:</strong> Show read-only consultants where to view tickets and notes so communication stays inside HubSpot.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PART D: ALL 8 SERVICE HUB MODULES (COMPLETE UNABRIDGED DEEP-DIVE) -->
+      <div class="part-block">
+        <div class="part-heading">
+          <h3>Part D — All 8 Service Hub Training Modules <span class="blue">(Full Descriptions, Step-by-Step &amp; Links)</span></h3>
+          <span class="part-tag">Complete Reference Manual</span>
         </div>
 
         <div class="module-toolbar">
@@ -591,109 +1323,102 @@
           <div class="module-header" onclick="toggleSingleModule(this)">
             <div class="module-title-group">
               <div class="module-badge-row">
-                <span class="mod-num">Module 01 &bull; Central Support &amp; Inquiry Workspace</span>
-                <span class="seat-pill">Read: Core Seat | Create/Assign/Reply: Service Seat</span>
+                <span class="mod-num">Module 01 &bull; Core Support Workspace</span>
+                <span class="seat-pill">Read: Core Seat | Create/Reply/SLAs: Service Pro Seat</span>
               </div>
-              <h4>1. Help Desk (Central Support &amp; Inquiry Workspace)</h4>
+              <h4>1. Help Desk (Central Support &amp; Ticket Workspace)</h4>
             </div>
             <span class="toggle-icon">&minus;</span>
           </div>
           <div class="module-body">
-            <!-- 1. What is the function & how it works -->
+            <!-- 1. Functionality -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; How It Works</div>
+              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; What Does It Do?</div>
               <div class="func-grid">
                 <div class="func-box">
                   <h5>General Functionality</h5>
                   <p>
-                    The Help Desk is the central workspace and communication hub for all incoming client and project inquiries. Instead of handling messages in cluttered individual email inboxes, Help Desk consolidates all channels (email, website forms, live chat) in one place and automatically converts every inquiry into a structured ticket. Each ticket moves through defined processing stages (pipelines), has a priority level, an assigned owner, and tracks response times via Service Level Agreements (SLAs).
+                    The Help Desk is a centralized, multi-channel workspace that aggregates incoming inquiries from shared team emails, website forms, live chat, and portals into structured, trackable support tickets. Beyond simple inbox management, it links every ticket simultaneously to CRM <strong>Contact</strong>, <strong>Company</strong>, and <strong>Deal</strong> records, enforces <strong>Service Level Agreements (SLAs)</strong> with automated countdown timers, routes issues based on custom rules, and includes Pro AI features (automated ticket summaries, AI reply suggestions, and automated ticket naming/routing).
                   </p>
                 </div>
                 <div class="func-box csg">
-                  <h5>Specific Application &amp; Value for CSG</h5>
+                  <h5>CSG Specific Application &amp; Real Examples</h5>
                   <ul>
-                    <li><strong>Zero Knowledge Loss Across Semester Transitions:</strong> Replaces private student email inboxes with a shared team inbox (<code>client-support@...</code>). When consultants rotate at the end of the semester, the entire communication history remains seamlessly stored on the Company record in the CRM.</li>
-                    <li><strong>Structured Project Execution:</strong> All scope-change requests, data requests, or mid-project client questions during a consulting engagement are logged as tickets. Team leads see immediately which requests are open and who is handling them.</li>
+                    <li><strong>Zero Knowledge Loss Across Semesters:</strong> Replaces fragmented private student email inboxes with one shared team inbox (<code>client-support@cougarstrategy.org</code>). When cohorts change, the entire client communication history stays permanently attached to the Company record.</li>
+                    <li><strong>Scope-Change Tracking (e.g., Alcomy Project):</strong> When a client requests extra analysis mid-semester, logging it as a ticket documents whether the request falls inside or outside the signed Engagement Letter scope.</li>
+                    <li><strong>Data Delivery Follow-Ups:</strong> When waiting on client data, setting a ticket to <em>Waiting on Client</em> triggers an automatic reminder after 3–4 days so projects do not stall before Stage Gate reviews.</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <!-- 2. Step-by-Step Guide -->
+            <!-- 2. Implementation & Step-by-Step -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">2</span> Step-by-Step Guide: Setup, Usage &amp; Data Input</div>
+              <div class="mod-subblock-title"><span class="step-tag">2</span> How to Implement, Use &amp; Input Our Information (Step-by-Step)</div>
               <div class="step-list">
                 <div class="step-item">
-                  <h5>Step 1: Connect Team Inbox &amp; Set Up Ticket Stages</h5>
+                  <h5>Step 1: Connect Team Inbox &amp; Configure Ticket Pipeline</h5>
                   <ol>
-                    <li>In HubSpot, click the <strong>Settings</strong> gear icon (top right) &rarr; <code class="ui-path">Inbox &amp; Help Desk &gt; Help Desk</code>.</li>
-                    <li>Click <strong>Connect a channel</strong> and choose <strong>Team Email</strong>.</li>
-                    <li>Enter the central CSG contact email address and enable <strong>Automatic ticket creation</strong> for incoming emails.</li>
-                    <li>Navigate to <code class="ui-path">Settings &gt; Objects &gt; Tickets &gt; Pipelines</code> and customize the stages to fit CSG's daily project workflow:
+                    <li>Click the <strong>Settings</strong> gear icon (top right) &rarr; go to <code class="ui-path">Inbox &amp; Help Desk &gt; Help Desk</code>.</li>
+                    <li>Click <strong>Connect a channel</strong> &rarr; select <strong>Team Email</strong>, connect <code>client-support@cougarstrategy.org</code>, and turn on <strong>Automatic ticket creation</strong> for incoming emails.</li>
+                    <li>Navigate to <code class="ui-path">Settings &gt; Objects &gt; Tickets &gt; Pipelines</code> and customize your stages to match CSG operations:
                       <strong>New Request</strong> &rarr; <strong>Under Review</strong> &rarr; <strong>In Progress</strong> &rarr; <strong>Waiting on Client</strong> &rarr; <strong>Resolved / Closed</strong>.
                     </li>
-                    <li><em>Pro Addition — Configure SLAs &amp; Pipeline Automation:</em> Under <code class="ui-path">Settings &gt; Inbox &amp; Help Desk &gt; SLAs</code>, define Time to First Response and Time to Close by priority with warning alerts before deadlines. Under the pipeline <em>Automate</em> tab, set an automatic follow-up Task if a ticket remains in <strong>Waiting on Client</strong> for 3 days without a reply.</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 2: Input Information &amp; Create Tickets</h5>
+                  <h5>Step 2: Configure SLAs &amp; Pipeline Automation (Pro Features)</h5>
+                  <ol>
+                    <li><strong>Set SLAs:</strong> Go to <code class="ui-path">Settings &gt; Inbox &amp; Help Desk &gt; SLAs</code>. Set <em>Time to First Response = 24 hours (Monday–Friday)</em> and <em>Time to Close</em> by priority, with an automated warning alert 3 hours before expiration.</li>
+                    <li><strong>Add Pipeline Automation:</strong> Under the ticket pipeline <em>Automate</em> tab, add a rule: if a ticket stays in <strong>Waiting on Client</strong> for 3 business days without reply, automatically create a follow-up <strong>Task</strong> for the Ticket Owner.</li>
+                    <li><strong>Create Text Snippets:</strong> Go to <code class="ui-path">CRM &gt; Snippets</code> and save standard templates (e.g., <code>#datarequest</code>). Typing <code>#datarequest</code> inside any ticket reply inserts the full message automatically.</li>
+                  </ol>
+                </div>
+
+                <div class="step-item">
+                  <h5>Step 3: Inputting Information &amp; Daily Team Execution</h5>
                   <ul>
-                    <li><strong>Automatic:</strong> Every email sent to the team address or every completed support/project form on the CSG website automatically generates a ticket linked to the Contact and Company.</li>
-                    <li><strong>Manual (e.g., after phone calls or Zoom calls):</strong>
-                      <ol>
-                        <li>Open <code class="ui-path">Service &gt; Help Desk</code> and click <strong>Create ticket</strong> in the top right.</li>
-                        <li>Assign a clear ticket name (e.g., <em>Alcomy &ndash; Additional Data Delivery Phase 2</em>).</li>
-                        <li>Select the <strong>Pipeline</strong> and current <strong>Stage</strong>.</li>
-                        <li>Set the <strong>Priority</strong> (Low, Medium, High).</li>
-                        <li>Under <strong>Associated records</strong>, link the corresponding <strong>Company</strong> and <strong>Contact</strong> so the ticket appears in the client file.</li>
-                      </ol>
-                    </li>
+                    <li><strong>Automated Input:</strong> Emails to the shared inbox or website support forms automatically create a ticket linked to the sender's Contact and Company.</li>
+                    <li><strong>Manual Input (Calls/Meetings):</strong> Open <code class="ui-path">Service &gt; Help Desk</code>, click <strong>Create ticket</strong> (top right), enter a standardized name (<code>[Client] &ndash; [Topic] &ndash; [Phase]</code>), select <strong>Pipeline</strong>, <strong>Stage</strong>, and <strong>Priority</strong> (Low/Medium/High), and associate the <strong>Company</strong> and <strong>Contact</strong>.</li>
+                    <li><strong>Daily Execution:</strong> Filter by <strong>Unassigned</strong> each morning, assign a <strong>Ticket Owner</strong>, reply directly using the <strong>Reply</strong> tab (client-visible), or switch to the yellow <strong>Comment</strong> tab to tag teammates or Paul Godfrey with <code>@Name</code> internally.</li>
                   </ul>
                 </div>
-
-                <div class="step-item">
-                  <h5>Step 3: Daily Ticket Handling &amp; Team Collaboration</h5>
-                  <ol>
-                    <li>Every morning, open <code class="ui-path">Service &gt; Help Desk</code> and filter on the left by <strong>Unassigned tickets</strong>.</li>
-                    <li>Click into the ticket and assign it via the <strong>Ticket Owner</strong> field to the responsible student consultant.</li>
-                    <li><strong>Reply to the Client:</strong> Use the email editor directly inside the ticket window to reply to the client—the reply is logged automatically.</li>
-                    <li><strong>Internal Collaboration:</strong> Click the <strong>Comment (Internal Note)</strong> tab (highlighted in yellow) in the editor and use <code>@Name</code> to ask teammates or Paul Godfrey for advice without sending an email to the client.</li>
-                  </ol>
-                </div>
+              </div>
+              <div class="callout warn" style="margin-top:12px; margin-bottom:0;">
+                <strong>Common Pitfall to Avoid:</strong> Never reply to client tickets from your personal university Gmail/Outlook account. If you do, the ticket stays open in Help Desk, the SLA timer turns red, and future semesters lose the reply. <strong>Always reply directly inside Help Desk.</strong>
               </div>
             </div>
 
-            <!-- 3. Permissions & Exact Links -->
+            <!-- 3. Links -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">3</span> Permissions &amp; Academy Links</div>
+              <div class="mod-subblock-title"><span class="step-tag">3</span> Links to HubSpot Academy Videos &amp; Knowledge Base</div>
               <div class="academy-links-box">
-                <div class="perm-note">
-                  <strong>Permissions:</strong> With a <strong>Core Seat (View-Only)</strong>, you can read tickets on the Company record. Creating, assigning, and replying requires a <strong>Service Seat</strong> (or appropriate write permissions).
-                </div>
-                <div class="academy-topic-header">HubSpot Academy: Managing Tickets in the Help Desk Workspace (Search Keywords: <code>Help Desk Workspace</code>, <code>Ticket Pipelines</code>)</div>
                 <ul>
+                  <li>
+                    <span class="link-type-badge">Full Lesson</span>
+                    <strong>Scaling Support Through Help Desk and Customer Agent (Adriti Gulati)</strong> — Complete setup: intake channels, ticket pipelines, SLAs, views, and reporting &rarr;
+                    <a href="https://academy.hubspot.com/lessons/scaling-support-through-help-desk-and-customer-agent" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/scaling-support-through-help-desk-and-customer-agent</a>
+                  </li>
+                  <li>
+                    <span class="link-type-badge">Short Video</span>
+                    <strong>Connect Your Support Channels (~2 min, Kyle Jepson)</strong> — Connecting email, live chat, and routing rules to Help Desk &rarr;
+                    <a href="https://app-na2.hubspot.com/academy/241871229/shortvideo/8525393?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/shortvideo/8525393?ruid=169081879</a>
+                  </li>
                   <li>
                     <span class="link-type-badge">Knowledge Base</span>
                     <strong>Overview of the Help Desk Workspace</strong> &rarr;
                     <a href="https://knowledge.hubspot.com/help-desk/overview-of-the-help-desk-workspace" target="_blank" rel="noopener">https://knowledge.hubspot.com/help-desk/overview-of-the-help-desk-workspace</a>
                   </li>
                   <li>
-                    <span class="link-type-badge">Knowledge Desk</span>
-                    <strong>Help Desk HubSpot Knowledge Desk</strong> &rarr;
+                    <span class="link-type-badge">Service Guide</span>
+                    <strong>HubSpot Service Tools Documentation: Help Desk</strong> &rarr;
                     <a href="https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&hubs_content-cta=kb-see-more#help-desk" target="_blank" rel="noopener">https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&amp;hubs_content-cta=kb-see-more#help-desk</a>
                   </li>
-                  <li>
-                    <span class="link-type-badge">Short Video</span>
-                    <strong>Connect Your Support Channels (~2 min, Kyle Jepson)</strong> — connect email, live chat, and messaging apps to help desk, plus routing rules &rarr;
-                    <a href="https://app-na2.hubspot.com/academy/241871229/shortvideo/8525393?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/shortvideo/8525393?ruid=169081879</a>
-                  </li>
-                  <li>
-                    <span class="link-type-badge">Lesson</span>
-                    <strong>Scaling Support Through Help Desk and Customer Agent (lesson, Adriti Gulati)</strong> — the full setup: intake channels, ticket pipelines, SLAs, views, and help desk reporting &rarr;
-                    <a href="https://academy.hubspot.com/lessons/scaling-support-through-help-desk-and-customer-agent" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/scaling-support-through-help-desk-and-customer-agent</a>
-                  </li>
                 </ul>
+                <div class="keywords-line">
+                  <strong>HubSpot Academy Search Keywords:</strong> <code>Help Desk Workspace</code>, <code>Ticket Pipelines</code>, <code>Managing Tickets in HubSpot</code>, <code>Help Desk SLAs</code>
+                </div>
               </div>
             </div>
           </div>
@@ -706,105 +1431,103 @@
           <div class="module-header" onclick="toggleSingleModule(this)">
             <div class="module-title-group">
               <div class="module-badge-row">
-                <span class="mod-num">Module 02 &bull; Client Care &amp; Account Health</span>
-                <span class="seat-pill">Read/Update: Core Seat | Escalation Workflows: Service Hub Pro Seat</span>
+                <span class="mod-num">Module 02 &bull; Account Health &amp; Milestone Tracking</span>
+                <span class="seat-pill">Read/Update: Core Seat | Escalation Workflows: Service Pro Seat</span>
               </div>
-              <h4>2. Customer Success (Client Care &amp; Account Health)</h4>
+              <h4>2. Customer Success (Engagement Health &amp; Escalation Control)</h4>
             </div>
             <span class="toggle-icon">&minus;</span>
           </div>
           <div class="module-body">
-            <!-- 1. What is the function & how it works -->
+            <!-- 1. Functionality -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; How It Works</div>
+              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; What Does It Do?</div>
               <div class="func-grid">
                 <div class="func-box">
                   <h5>General Functionality</h5>
                   <p>
-                    The Customer Success area is a strategic control cockpit for ongoing client relationships. It enables teams to monitor the "health status" (<strong>Account Health</strong>) of clients using measurable criteria, track milestones across onboarding and project execution, and initiate early countermeasures when problems threaten to arise.
+                    Customer Success is a strategic account-management framework designed to monitor ongoing client relationship health (<strong>Account Health Score</strong>), track structured onboarding and delivery milestones, and trigger early interventions when engagement risks appear—rather than reacting only after a client complains.
                   </p>
                 </div>
                 <div class="func-box csg">
-                  <h5>Specific Application &amp; Value for CSG</h5>
+                  <h5>CSG Specific Application</h5>
                   <ul>
-                    <li><strong>Real-Time Overview for Leadership:</strong> Faculty Advisor (Paul Godfrey) and VPs of Operations see at a glance which active semester projects are in the green and where friction exists (e.g., delayed client data delivery or dissatisfaction before a Stage Gate review).</li>
-                    <li><strong>Standardized Project Milestones:</strong> Makes progress across the three typical CSG project phases (<em>Phase 1: Diagnostic Assessment</em>, <em>Phase 2: Strategy &amp; Org Design</em>, <em>Phase 3: Final SOP &amp; Slide Deck</em>) transparent for everyone.</li>
+                    <li><strong>Real-Time Leadership Visibility:</strong> Gives Faculty Advisor Paul Godfrey and VPs of Operations an immediate traffic-light overview (Green / Yellow / Red) of every active semester engagement before Stage Gate reviews.</li>
+                    <li><strong>Standardized Phase Tracking:</strong> Tracks progress across CSG's three standard consulting phases: <em>Phase 1: Diagnostic Assessment</em>, <em>Phase 2: Strategy &amp; Org Design</em>, and <em>Phase 3: Final SOP &amp; Slide Deck</em>.</li>
                   </ul>
                 </div>
               </div>
               <div class="callout warn" style="margin-top:12px; margin-bottom:0;">
-                <strong>Pro License Note (Workaround):</strong> The native <code>Service &gt; Customer Success</code> workspace menu and automated health scores are Enterprise features. With CSG's Service Hub Professional license, use the exact Custom Properties + Saved CRM Views + Escalation Task Workflow steps below.
+                <strong>Important License Note (Pro vs. Enterprise Workaround):</strong> The dedicated menu item <code>Service &gt; Customer Success</code> and native automated health score calculations are <strong>Enterprise-only</strong> features. With CSG's <strong>Service Hub Professional</strong> license, we replicate this exact capability using <strong>Custom Company Properties + Saved CRM Views + Escalation Workflows</strong> (steps below).
               </div>
             </div>
 
-            <!-- 2. Step-by-Step Guide -->
+            <!-- 2. Implementation & Step-by-Step -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">2</span> Step-by-Step Guide: Setup, Usage &amp; Data Input</div>
+              <div class="mod-subblock-title"><span class="step-tag">2</span> How to Implement, Use &amp; Input Our Information (Step-by-Step)</div>
               <div class="step-list">
                 <div class="step-item">
-                  <h5>Step 1: Create Custom Health Properties</h5>
+                  <h5>Step 1: Create Custom Health &amp; Milestone Properties</h5>
                   <ol>
                     <li>Go to <code class="ui-path">Settings &gt; Properties</code> and select <strong>Company Properties</strong>.</li>
-                    <li>Click <strong>Create property</strong> and create two central control fields:
+                    <li>Click <strong>Create property</strong> and create two standardized dropdown fields:
                       <ul>
-                        <li><strong>CSG Client Health Score</strong> (Field type: Dropdown select with options: <code>Green - On Track</code>, <code>Yellow - At Risk</code>, <code>Red - Critical</code>).</li>
-                        <li><strong>Project Milestone Status</strong> (Field type: Dropdown select with options: <code>Kickoff Completed</code>, <code>Phase 1 Delivered</code>, <code>Phase 2 Delivered</code>, <code>Final Presentation Delivered</code>).</li>
+                        <li><strong>CSG Client Health Score</strong> (Dropdown options: <code>Green - On Track</code>, <code>Yellow - At Risk</code>, <code>Red - Critical</code>).</li>
+                        <li><strong>Project Milestone Status</strong> (Dropdown options: <code>Kickoff Completed</code>, <code>Phase 1 Delivered</code>, <code>Phase 2 Delivered</code>, <code>Final Presentation Delivered</code>).</li>
                       </ul>
                     </li>
+                    <li>Set both fields as required during client onboarding so no active client record stays blank.</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 2: Input Weekly Status Data</h5>
+                  <h5>Step 2: Input Weekly Client Status Updates</h5>
                   <ol>
-                    <li>Open <code class="ui-path">CRM &gt; Companies</code> and open the record of the active client.</li>
-                    <li>Scroll down the left sidebar to the <strong>CSG Client Health</strong> section.</li>
-                    <li>After every weekly client call, update the <strong>CSG Client Health Score</strong> and <strong>Project Milestone Status</strong>, then click <strong>Save</strong> at the bottom.</li>
-                    <li>In the middle pane under <strong>Notes</strong>, write a short summary of the status call and click <strong>Pin</strong> so the current status remains visible at the very top.</li>
+                    <li>Open <code class="ui-path">CRM &gt; Companies</code> and select your active client record (e.g., <em>Alcomy</em>).</li>
+                    <li>In the left sidebar under <strong>CSG Client Health</strong>, update the <strong>CSG Client Health Score</strong> and <strong>Project Milestone Status</strong> after every weekly client status call, then click <strong>Save</strong>.</li>
+                    <li>In the middle timeline, click <strong>Notes</strong>, log a 3-bullet summary of the weekly call, and click <strong>Actions &gt; Pin note</strong> so leadership sees the latest status at the very top.</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 3: Use Escalation View &amp; Workflow</h5>
+                  <h5>Step 3: Build Saved Risk Views &amp; Escalation Workflows</h5>
                   <ol>
-                    <li>Open <code class="ui-path">CRM &gt; Companies</code> and create a saved CRM view named <strong>Active CSG Clients</strong> (or <strong>At-Risk CSG Clients</strong>).</li>
-                    <li>Filter by <code>CSG Client Health Score = Yellow or Red</code>.</li>
-                    <li>Whenever a project moves to Yellow or Red, create a <strong>Task</strong> (manually or via a Pro Workflow) for the <strong>VP of Operations</strong> (e.g., <em>Schedule intervention call with client CEO</em>).</li>
+                    <li>In <code class="ui-path">CRM &gt; Companies</code>, click <strong>+ Add view</strong>, filter by <code>CSG Client Health Score is any of Yellow - At Risk, Red - Critical</code>, and save it as <strong>At-Risk CSG Engagements</strong>.</li>
+                    <li>Under <code class="ui-path">Automations &gt; Workflows</code>, build a Company-based workflow: whenever <strong>CSG Client Health Score</strong> changes to <code>Yellow</code> or <code>Red</code>, automatically create a high-priority <strong>Task</strong> for the VP of Operations to schedule an intervention call with the client sponsor.</li>
                   </ol>
                 </div>
               </div>
             </div>
 
-            <!-- 3. Permissions & Exact Links -->
+            <!-- 3. Links -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">3</span> Permissions &amp; Academy Links</div>
+              <div class="mod-subblock-title"><span class="step-tag">3</span> Links to HubSpot Academy Videos &amp; Knowledge Base</div>
               <div class="academy-links-box">
-                <div class="perm-note">
-                  <strong>Permissions:</strong> In a <strong>Core Seat</strong>, status values and notes can be viewed (and updated when CRM write permissions are enabled). Automated health score calculations require Enterprise; escalation workflows require a <strong>Service Hub Pro Seat</strong>.
-                </div>
-                <div class="academy-topic-header">HubSpot Academy: Understanding Customer Success &amp; Account Management (Search Keywords: <code>Customer Success Management</code>, <code>Account Health</code>)</div>
                 <ul>
+                  <li>
+                    <span class="link-type-badge">Full Lesson</span>
+                    <strong>Setting up the Customer Success Workspace (Adriti Gulati)</strong> — Creating custom health scores and spotting engagement risks early &rarr;
+                    <a href="https://academy.hubspot.com/lessons/setting-up-the-customer-success-workspace" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/setting-up-the-customer-success-workspace</a>
+                  </li>
+                  <li>
+                    <span class="link-type-badge">Short Video</span>
+                    <strong>What is the Customer Success Workspace? (~2.5 min, Adriti Gulati)</strong> — Overview of customers, services, tasks, and health tabs &rarr;
+                    <a href="https://app-na2.hubspot.com/academy/241871229/shortvideo/7261070?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/shortvideo/7261070?ruid=169081879</a>
+                  </li>
                   <li>
                     <span class="link-type-badge">Knowledge Base</span>
                     <strong>Set Up and Manage the Customer Success Workspace</strong> &rarr;
                     <a href="https://knowledge.hubspot.com/customer-success/set-up-and-manage-the-customer-success-workspace" target="_blank" rel="noopener">https://knowledge.hubspot.com/customer-success/set-up-and-manage-the-customer-success-workspace</a>
                   </li>
                   <li>
-                    <span class="link-type-badge">Knowledge Base</span>
-                    <strong>Customer Success HubSpot Knowledge Base</strong> &rarr;
+                    <span class="link-type-badge">Service Guide</span>
+                    <strong>HubSpot Service Tools Documentation: Customer Success</strong> &rarr;
                     <a href="https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&hubs_content-cta=kb-see-more#customer-success" target="_blank" rel="noopener">https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&amp;hubs_content-cta=kb-see-more#customer-success</a>
                   </li>
-                  <li>
-                    <span class="link-type-badge">Short Video</span>
-                    <strong>What is the Customer Success Workspace? (~2.5 min, Adriti Gulati)</strong> — the workspace’s summary, customers, services, revenue, tasks, and feed tabs &rarr;
-                    <a href="https://app-na2.hubspot.com/academy/241871229/shortvideo/7261070?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/shortvideo/7261070?ruid=169081879</a>
-                  </li>
-                  <li>
-                    <span class="link-type-badge">Lesson</span>
-                    <strong>Setting up the Customer Success Workspace (lesson, Adriti Gulati)</strong> — includes creating custom health scores to spot churn risks early &rarr;
-                    <a href="https://academy.hubspot.com/lessons/setting-up-the-customer-success-workspace" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/setting-up-the-customer-success-workspace</a>
-                  </li>
                 </ul>
+                <div class="keywords-line">
+                  <strong>HubSpot Academy Search Keywords:</strong> <code>Customer Success Management</code>, <code>Account Health</code>, <code>Custom Properties &amp; Saved Views</code>
+                </div>
               </div>
             </div>
           </div>
@@ -817,86 +1540,89 @@
           <div class="module-header" onclick="toggleSingleModule(this)">
             <div class="module-title-group">
               <div class="module-badge-row">
-                <span class="mod-num">Module 03 &bull; AI Support Assistant / Breeze AI</span>
-                <span class="seat-pill">View Logs: Core Seat | Setup &amp; Training: Service Seat + HubSpot Credits</span>
+                <span class="mod-num">Module 03 &bull; Breeze AI Conversational Support</span>
+                <span class="seat-pill">View Logs: Core Seat | Setup &amp; Training: Service Pro Seat + Credits</span>
               </div>
-              <h4>3. Customer Agent (AI Support Assistant / Breeze AI)</h4>
+              <h4>3. Customer Agent (Breeze AI Support Assistant)</h4>
             </div>
             <span class="toggle-icon">&minus;</span>
           </div>
           <div class="module-body">
-            <!-- 1. What is the function & how it works -->
+            <!-- 1. Functionality -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; How It Works</div>
+              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; What Does It Do?</div>
               <div class="func-grid">
                 <div class="func-box">
                   <h5>General Functionality</h5>
                   <p>
-                    The Customer Agent is an AI-powered conversational agent (based on HubSpot Breeze AI). It autonomously searches your connected Knowledge Base, website pages, and uploaded documents to answer incoming visitor or client questions 24/7 in natural language. When the AI detects a complex inquiry or direct project request, it automatically hands off the conversation to a human consultant (<strong>Human Handoff</strong>).
+                    The Customer Agent (powered by HubSpot Breeze AI) is an autonomous conversational AI assistant trained exclusively on your approved knowledge sources (Knowledge Base articles, public website URLs, and uploaded PDFs). It answers visitor and client questions 24/7 across chat, email, and forms in natural language, and automatically triggers a <strong>Human Handoff</strong> (creating a Help Desk ticket) when a question requires human judgment.
                   </p>
                 </div>
                 <div class="func-box csg">
-                  <h5>Specific Application &amp; Value for CSG</h5>
+                  <h5>CSG Specific Application</h5>
                   <ul>
-                    <li><strong>Relief From Repetitive Questions:</strong> Answers recurring prospect questions (e.g., <em>"How long does a CSG project take?"</em>, <em>"What does a consulting engagement cost?"</em>, <em>"Which industries do you serve?"</em>) immediately and accurately without a student having to write emails manually.</li>
-                    <li><strong>Internal Knowledge Assistant:</strong> Can also be used internally so new consultants quickly find answers to questions about CSG standards or templates.</li>
+                    <li><strong>24/7 Coverage Between Classes:</strong> Student consultants cannot monitor live chat during lectures. The Customer Agent instantly answers common prospect questions (<em>"How long is a CSG engagement?"</em>, <em>"What industries do you serve?"</em>, <em>"How are projects priced?"</em>).</li>
+                    <li><strong>Internal Consultant Assistant:</strong> Can also assist new student consultants in quickly finding answers on CSG frameworks, templates, and SOP standards.</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <!-- 2. Step-by-Step Guide -->
+            <!-- 2. Implementation & Step-by-Step -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">2</span> Step-by-Step Guide: Setup, Usage &amp; Data Input</div>
+              <div class="mod-subblock-title"><span class="step-tag">2</span> How to Implement, Use &amp; Input Our Information (Step-by-Step)</div>
               <div class="step-list">
                 <div class="step-item">
-                  <h5>Step 1: Activate AI Agent &amp; Connect Knowledge Sources</h5>
+                  <h5>Step 1: Activate Agent &amp; Connect Approved Knowledge Sources</h5>
                   <ol>
-                    <li>Navigate to <code class="ui-path">Service &gt; Customer Agent</code> and click <strong>Get Started</strong>.</li>
-                    <li>Assign a name (e.g., <em>CSG Virtual Assistant</em>) and select the communication tone (Professional, Helpful, Concise).</li>
-                    <li>Under <strong>Data Sources</strong>, select:
+                    <li>First, ensure at least 15–20 Knowledge Base articles (Module 5) are published.</li>
+                    <li>Navigate to <code class="ui-path">Service &gt; Customer Agent</code> and click <strong>Get Started / Set up agent</strong>.</li>
+                    <li>Name the agent (e.g., <em>CSG Virtual Assistant</em>) and select a professional, helpful tone of voice.</li>
+                    <li>Under <strong>Knowledge / Data Sources</strong>, link:
                       <ul>
-                        <li>Your published <strong>Knowledge Base</strong> articles (see Module 5 — publish 15–20 solid articles first).</li>
-                        <li>Your public CSG website URLs.</li>
-                        <li>Upload approved PDF documents (e.g., the <em>CSG Capabilities Deck</em> or the <em>Project Scope One-Pager</em>).</li>
+                        <li>Your published CSG <strong>Knowledge Base</strong> articles.</li>
+                        <li>Public CSG website URLs (services, process, FAQ pages).</li>
+                        <li>Approved public PDFs (e.g., <em>CSG Capabilities Deck</em> or <em>Engagement Scope One-Pager</em>—never upload confidential client deliverables).</li>
                       </ul>
                     </li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 2: Define Human Handoff Rules</h5>
+                  <h5>Step 2: Configure Human Handoff &amp; Escalation Rules</h5>
                   <ol>
-                    <li>Open the <strong>Handoff</strong> tab inside Customer Agent.</li>
-                    <li>Define what happens when the AI cannot answer a question with certainty or when the user selects <em>"Speak with a consultant"</em>:
-                      <ul>
-                        <li>Select <strong>Create ticket in Help Desk</strong> and assign it to the <strong>Business Development Lead</strong>.</li>
-                      </ul>
-                    </li>
-                    <li>Enable email and in-app notifications so the team is alerted immediately whenever human intervention is needed.</li>
+                    <li>Open the <strong>Handoff / Actions</strong> tab inside Customer Agent settings.</li>
+                    <li>Define the fallback rule when the AI cannot answer confidently or when a user clicks <em>"Talk to a consultant"</em>: select <strong>Create a ticket in Help Desk</strong> and route it to the <strong>Business Development Lead</strong>.</li>
+                    <li>Enable email and in-app notifications so the team is alerted immediately when a prospect requests human follow-up.</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 3: Ongoing Maintenance &amp; AI Training</h5>
+                  <h5>Step 3: Weekly AI Training &amp; Maintenance</h5>
                   <ol>
-                    <li>Once a week, go to <code class="ui-path">Service &gt; Customer Agent &gt; Unhandled Questions</code>.</li>
-                    <li>Review the list of questions where the AI had to pass.</li>
-                    <li>Click <strong>Add answer to Knowledge Base</strong> directly next to the question, write the approved response, and save—from that moment on, the agent knows that topic.</li>
+                    <li>Once a week, open <code class="ui-path">Service &gt; Customer Agent &gt; Unhandled Questions</code>.</li>
+                    <li>Review questions the AI could not answer.</li>
+                    <li>Click <strong>Add answer to Knowledge Base</strong> next to valid questions, write the approved response, and save—the agent learns the new topic immediately.</li>
                   </ol>
                 </div>
               </div>
             </div>
 
-            <!-- 3. Permissions & Exact Links -->
+            <!-- 3. Links -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">3</span> Permissions &amp; Academy Links</div>
+              <div class="mod-subblock-title"><span class="step-tag">3</span> Links to HubSpot Academy Videos &amp; Knowledge Base</div>
               <div class="academy-links-box">
-                <div class="perm-note">
-                  <strong>Permissions:</strong> Configuration and training require a <strong>Service Seat</strong> (as well as HubSpot Credits for Breeze AI).
-                </div>
-                <div class="academy-topic-header">HubSpot Academy: Setting Up Conversational AI and Bots in HubSpot (Search Keywords: <code>Customer Agent</code>, <code>Breeze AI Support</code>)</div>
                 <ul>
+                  <li>
+                    <span class="link-type-badge">Short Video</span>
+                    <strong>Set Up Breeze Customer Agent (~2 min, Kyle Jepson)</strong> — Training the AI agent on your content, brand voice, and escalation rules &rarr;
+                    <a href="https://app-na2.hubspot.com/academy/241871229/shortvideo/8488212?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/shortvideo/8488212?ruid=169081879</a>
+                  </li>
+                  <li>
+                    <span class="link-type-badge">Short Video</span>
+                    <strong>What is Customer Agent? (~2 min, Brenna Zenaty)</strong> — How it resolves inquiries autonomously across chat, email, and forms &rarr;
+                    <a href="https://app-na2.hubspot.com/academy/241871229/shortvideo/2639654?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/shortvideo/2639654?ruid=169081879</a>
+                  </li>
                   <li>
                     <span class="link-type-badge">Knowledge Base</span>
                     <strong>Set Up the Customer Agent</strong> &rarr;
@@ -908,21 +1634,14 @@
                     <a href="https://knowledge.hubspot.com/customer-agent/set-up-actions-for-the-customer-agent" target="_blank" rel="noopener">https://knowledge.hubspot.com/customer-agent/set-up-actions-for-the-customer-agent</a>
                   </li>
                   <li>
-                    <span class="link-type-badge">Knowledge Base</span>
-                    <strong>Customer Agent HubSpot Knowledge Base</strong> &rarr;
+                    <span class="link-type-badge">Service Guide</span>
+                    <strong>HubSpot Service Tools Documentation: Customer Agent</strong> &rarr;
                     <a href="https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&hubs_content-cta=kb-see-more#customer-agent" target="_blank" rel="noopener">https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&amp;hubs_content-cta=kb-see-more#customer-agent</a>
                   </li>
-                  <li>
-                    <span class="link-type-badge">Short Video</span>
-                    <strong>Set Up Breeze Customer Agent (~2 min, Kyle Jepson)</strong> — training the AI agent on your content, brand voice, and escalation rules &rarr;
-                    <a href="https://app-na2.hubspot.com/academy/241871229/shortvideo/8488212?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/shortvideo/8488212?ruid=169081879</a>
-                  </li>
-                  <li>
-                    <span class="link-type-badge">Short Video</span>
-                    <strong>What is Customer Agent? (~2 min, Brenna Zenaty)</strong> — how it resolves tickets autonomously across chat, email, WhatsApp, forms, and voice &rarr;
-                    <a href="https://app-na2.hubspot.com/academy/241871229/shortvideo/2639654?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/shortvideo/2639654?ruid=169081879</a>
-                  </li>
                 </ul>
+                <div class="keywords-line">
+                  <strong>HubSpot Academy Search Keywords:</strong> <code>Customer Agent</code>, <code>Breeze AI Support</code>, <code>Setting Up Conversational AI</code>
+                </div>
               </div>
             </div>
           </div>
@@ -935,105 +1654,103 @@
           <div class="module-header" onclick="toggleSingleModule(this)">
             <div class="module-title-group">
               <div class="module-badge-row">
-                <span class="mod-num">Module 04 &bull; Website Chat &amp; Automated Lead Bots</span>
-                <span class="seat-pill">View Bots: Core Seat | Create &amp; Publish: Service or Marketing Seat</span>
+                <span class="mod-num">Module 04 &bull; Website Lead Qualification &amp; Booking Bots</span>
+                <span class="seat-pill">View Bots: Core Seat | Build &amp; Publish: Service or Marketing Pro Seat</span>
               </div>
               <h4>4. Chatflows (Website Chat &amp; Automated Lead Bots)</h4>
             </div>
             <span class="toggle-icon">&minus;</span>
           </div>
           <div class="module-body">
-            <!-- 1. What is the function & how it works -->
+            <!-- 1. Functionality -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; How It Works</div>
+              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; What Does It Do?</div>
               <div class="func-grid">
                 <div class="func-box">
                   <h5>General Functionality</h5>
                   <p>
-                    Chatflows is a visual builder for chat widgets on your website. You can use it to create either a direct <strong>Live Chat</strong> (for real-time conversations) or a rule-based <strong>Chatbot</strong> (decision tree) that greets website visitors, asks targeted qualification questions, collects contact data, and books calendar meetings directly.
+                    Chatflows is a visual drag-and-drop builder for website chat widgets. Teams can deploy either a real-time <strong>Live Chat</strong> or a rule-based <strong>Chatbot</strong> (if/then decision tree) that greets website visitors, asks qualifying questions, writes answers directly into CRM Contact/Company properties, and embeds calendar booking links inside the chat window.
                   </p>
                 </div>
                 <div class="func-box csg">
-                  <h5>Specific Application &amp; Value for CSG</h5>
+                  <h5>CSG Specific Application</h5>
                   <ul>
-                    <li><strong>24/7 Lead Qualification on the CSG Website:</strong> Captures interested business decision-makers visiting the CSG website, asks about project scope and industry, and lets them immediately book a 20-minute Discovery Call.</li>
-                    <li><strong>Clean Separation of Visitor Groups:</strong> Immediately separates website visitors into businesses (prospective clients), students (CSG applicants), and alumni.</li>
+                    <li><strong>24/7 Website Lead Qualification:</strong> Captures prospective business decision-makers visiting the CSG website, collects company details and project scope, and lets them book a 20-minute Discovery Call immediately.</li>
+                    <li><strong>Clean Visitor Routing:</strong> Separates website visitors automatically into <em>Prospective Clients (Hire CSG)</em>, <em>Students (Join CSG)</em>, and <em>General/Alumni Inquiries</em> so student applications do not clutter the client sales pipeline.</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <!-- 2. Step-by-Step Guide -->
+            <!-- 2. Implementation & Step-by-Step -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">2</span> Step-by-Step Guide: Setup, Usage &amp; Data Input</div>
+              <div class="mod-subblock-title"><span class="step-tag">2</span> How to Implement, Use &amp; Input Our Information (Step-by-Step)</div>
               <div class="step-list">
                 <div class="step-item">
                   <h5>Step 1: Create Chatflow &amp; Select Channel</h5>
                   <ol>
-                    <li>Go to <code class="ui-path">Service &gt; Chatflows</code> and click <strong>Create chatflow</strong> in the top right.</li>
-                    <li>Select <strong>Website</strong> and choose <strong>Bot</strong> (automated sequence—recommended for student teams with class schedules).</li>
-                    <li>Give the chatflow a clear name (e.g., <em>CSG Website Inbound Qualifier</em>).</li>
+                    <li>Navigate to <code class="ui-path">Service &gt; Chatflows</code> (or <code class="ui-path">Automations &gt; Chatflows</code>) and click <strong>Create chatflow</strong>.</li>
+                    <li>Select <strong>Website</strong> and choose <strong>Bot</strong> (automated decision-tree bot—recommended for student teams with rotating class schedules).</li>
+                    <li>Name the bot clearly (e.g., <em>CSG Website Inbound Qualifier</em>).</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 2: Build Decision Tree &amp; Data Capture</h5>
+                  <h5>Step 2: Build Decision Tree, CRM Data Capture &amp; Meeting Booking</h5>
                   <ol>
-                    <li><strong>Welcome Message:</strong> Enter as the first action: <em>"Welcome to the Cougar Strategy Group! How can we help you today?"</em></li>
-                    <li><strong>Branching Question (Quick Replies):</strong> Create three selection buttons:
+                    <li><strong>Welcome Message:</strong> Enter: <em>"Welcome to Cougar Strategy Group! How can we help you today?"</em></li>
+                    <li><strong>Quick-Reply Branching:</strong> Add three quick-reply buttons:
                       <ul>
-                        <li>Button 1: <strong>Request a Project (Hire CSG)</strong></li>
-                        <li>Button 2: <strong>Apply as a Student (Join CSG)</strong></li>
+                        <li>Button 1: <strong>Request a Consulting Project (Hire CSG)</strong></li>
+                        <li>Button 2: <strong>Apply as a Student Consultant (Join CSG)</strong></li>
                         <li>Button 3: <strong>General Question</strong></li>
                       </ul>
                     </li>
-                    <li><strong>Data Capture (Required Fields for Button 1):</strong> Add sequential question nodes that write directly into CRM properties:
+                    <li><strong>CRM Property Mapping (Button 1 Path):</strong> Add sequential question nodes mapped directly to CRM fields:
                       <ul>
-                        <li><em>"What is your first and last name?"</em> &rarr; Saves to <code>First Name</code> / <code>Last Name</code>.</li>
-                        <li><em>"What is your business email address?"</em> &rarr; Saves to <code>Email</code>.</li>
-                        <li><em>"Which company do you work for?"</em> &rarr; Saves to <code>Company Name</code>.</li>
+                        <li><em>"What is your first and last name?"</em> &rarr; saves to <code>First Name</code> / <code>Last Name</code>.</li>
+                        <li><em>"What is your business email?"</em> &rarr; saves to <code>Email</code> (and sets <code>Contact Type = Prospective Client</code>).</li>
+                        <li><em>"Which company do you represent?"</em> &rarr; saves to <code>Company Name</code>.</li>
                       </ul>
                     </li>
-                    <li><strong>Embed Meeting Booking:</strong> At the end of the branch, add the <strong>Book a meeting</strong> action and link the calendar of the CSG Business Development Lead.</li>
+                    <li><strong>Meeting Booking Node:</strong> At the end of the client branch, add the <strong>Book a meeting</strong> action linked to the CSG Business Development Lead's calendar.</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 3: Define Target Pages &amp; Publish</h5>
+                  <h5>Step 3: Configure Targeting, Branding &amp; Publish</h5>
                   <ol>
-                    <li>Switch to the <strong>Targeting</strong> tab at the top.</li>
-                    <li>Specify on which URLs the chat window should appear (e.g., on the homepage and under <code>/services</code>, but not on internal pages).</li>
-                    <li>Under <strong>Display</strong>, match the colors to CSG branding (Navy Blue/Gold) and click <strong>Publish</strong> in the top right.</li>
+                    <li>Open the <strong>Target</strong> tab and restrict the widget to public pages (e.g., homepage and <code>/services</code>, excluding internal pages).</li>
+                    <li>Open the <strong>Display</strong> tab, apply CSG Navy/Royal Blue branding, test the full flow internally, and toggle the switch at top right to <strong>On (Publish)</strong>.</li>
                   </ol>
                 </div>
               </div>
             </div>
 
-            <!-- 3. Permissions & Exact Links -->
+            <!-- 3. Links -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">3</span> Permissions &amp; Academy Links</div>
+              <div class="mod-subblock-title"><span class="step-tag">3</span> Links to HubSpot Academy Videos &amp; Knowledge Base</div>
               <div class="academy-links-box">
-                <div class="perm-note">
-                  <strong>Permissions:</strong> In a <strong>Core Seat</strong>, existing chatflows can be viewed; creating and publishing requires a <strong>Service Seat</strong> or <strong>Marketing Seat</strong>.
-                </div>
-                <div class="academy-topic-header">HubSpot Academy: Building a Chatflow in HubSpot (Search Keywords: <code>Chatflows</code>, <code>Website Bot Setup</code>)</div>
                 <ul>
                   <li>
+                    <span class="link-type-badge">Short Video</span>
+                    <strong>How To Create a Chatbot in HubSpot (~1.5 min, Adriti Gulati)</strong> — Customizing chatbot templates, if/then branching, and routing chats to your inbox &rarr;
+                    <a href="https://app-na2.hubspot.com/academy/241871229/shortvideo/1526603?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/shortvideo/1526603?ruid=169081879</a>
+                  </li>
+                  <li>
                     <span class="link-type-badge">Knowledge Base</span>
-                    <strong>Add a Chatflow to Your WordPress Pages</strong> &rarr;
+                    <strong>Add a Chatflow to Your Website Pages</strong> &rarr;
                     <a href="https://knowledge.hubspot.com/chatflows/add-a-chatflow-to-your-wordpress-pages" target="_blank" rel="noopener">https://knowledge.hubspot.com/chatflows/add-a-chatflow-to-your-wordpress-pages</a>
                   </li>
                   <li>
-                    <span class="link-type-badge">Knowledge Base</span>
-                    <strong>Chatflows HubSpot Knowledge Base</strong> &rarr;
+                    <span class="link-type-badge">Service Guide</span>
+                    <strong>HubSpot Service Tools Documentation: Chatflows</strong> &rarr;
                     <a href="https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&hubs_content-cta=kb-see-more#chatflows" target="_blank" rel="noopener">https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&amp;hubs_content-cta=kb-see-more#chatflows</a>
                   </li>
-                  <li>
-                    <span class="link-type-badge">Short Video</span>
-                    <strong>How To Create a Chatbot in HubSpot (~1.5 min, Adriti Gulati)</strong> — customizing chatbot templates, if/then branching, and routing chats to your inbox &rarr;
-                    <a href="https://app-na2.hubspot.com/academy/241871229/shortvideo/1526603?ruid=169081879" target="_blank" rel="noopener">https://app-na2.hubspot.com/academy/241871229/shortvideo/1526603?ruid=169081879</a>
-                  </li>
                 </ul>
+                <div class="keywords-line">
+                  <strong>HubSpot Academy Search Keywords:</strong> <code>Chatflows</code>, <code>Website Bot Setup</code>, <code>Building a Chatflow in HubSpot</code>
+                </div>
               </div>
             </div>
           </div>
@@ -1046,103 +1763,95 @@
           <div class="module-header" onclick="toggleSingleModule(this)">
             <div class="module-title-group">
               <div class="module-badge-row">
-                <span class="mod-num">Module 05 &bull; Knowledge Base &amp; Self-Service Portal</span>
-                <span class="seat-pill">Read: Core Seat | Create, Categorize &amp; Publish: Service Hub Pro Seat</span>
+                <span class="mod-num">Module 05 &bull; External Client FAQs &amp; Internal SOP Library</span>
+                <span class="seat-pill">Read: Core Seat | Create, Categorize &amp; Publish: Service Pro Seat</span>
               </div>
-              <h4>5. Knowledge Base (Self-Service Library &amp; Internal SOPs)</h4>
+              <h4>5. Knowledge Base (Self-Service Library &amp; Internal SOP Hub)</h4>
             </div>
             <span class="toggle-icon">&minus;</span>
           </div>
           <div class="module-body">
-            <!-- 1. What is the function & how it works -->
+            <!-- 1. Functionality -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; How It Works</div>
+              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; What Does It Do?</div>
               <div class="func-grid">
                 <div class="func-box">
                   <h5>General Functionality</h5>
                   <p>
-                    The Knowledge Base is a structured online library for help articles, guides, FAQs, and documentation. Articles can be organized into categories, optimized for search engines (SEO/AEO), and made either publicly accessible to all visitors or password-protected for specific user groups.
+                    The Knowledge Base is a structured, searchable online library for help articles, process guides, FAQs, and documentation. Articles are organized into categories, optimized for search engines (SEO/AEO), tracked via built-in readership analytics, and controlled per article as either <strong>Public</strong> or <strong>Private (Password-Protected / Registration Required)</strong>.
                   </p>
                 </div>
                 <div class="func-box csg">
-                  <h5>Specific Application &amp; Value for CSG</h5>
+                  <h5>CSG Specific Application (Dual Purpose)</h5>
                   <ul>
-                    <li><strong>External (Public):</strong> Explains to prospective clients how CSG works, consulting frameworks (e.g., the 7Rs model), project workflows, and data privacy standards—building trust and professionalism.</li>
-                    <li><strong>Internal (Password-Protected):</strong> Serves as a central digital handbook for new CSG consultants (SOPs, template explanations, onboarding checklists) so no institutional know-how is ever lost.</li>
+                    <li><strong>External (Public Client Portal):</strong> Explains CSG's consulting methodology (e.g., 7Rs framework), project timelines, data confidentiality standards, and onboarding steps—building executive credibility and reducing repetitive emails.</li>
+                    <li><strong>Internal (Password-Protected Consultant SOPs):</strong> Acts as a permanent digital handbook for incoming CSG consultants (HubSpot tutorials, deliverable templates, Loom walkthroughs) so institutional knowledge never disappears.</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <!-- 2. Step-by-Step Guide -->
+            <!-- 2. Implementation & Step-by-Step -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">2</span> Step-by-Step Guide: Setup, Usage &amp; Data Input</div>
+              <div class="mod-subblock-title"><span class="step-tag">2</span> How to Implement, Use &amp; Input Our Information (Step-by-Step)</div>
               <div class="step-list">
                 <div class="step-item">
-                  <h5>Step 1: Set Up Design &amp; Domain</h5>
+                  <h5>Step 1: Configure Branding &amp; Subdomain</h5>
                   <ol>
-                    <li>Go to <code class="ui-path">Service &gt; Knowledge Base</code>.</li>
-                    <li>Click <strong>Customize template</strong> to upload the CSG logo and set brand colors (Navy Blue, Gold, White).</li>
-                    <li>Under <code class="ui-path">Settings &gt; Domains</code>, connect your subdomain (e.g., <code>help.cougarstrategy.org</code>).</li>
+                    <li>Navigate to <code class="ui-path">Service &gt; Knowledge Base</code>.</li>
+                    <li>Click <strong>Customize template</strong> to upload the CSG logo and apply CSG Navy/Royal Blue colors.</li>
+                    <li>Under <code class="ui-path">Settings &gt; Domains &amp; URLs</code>, connect your dedicated subdomain (e.g., <code>help.cougarstrategy.org</code>).</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 2: Create Categories &amp; Write Articles</h5>
+                  <h5>Step 2: Create Categories &amp; Write Structured Articles</h5>
                   <ol>
-                    <li>Click <strong>Manage categories</strong> and create clear folder structures:
+                    <li>Click <strong>Manage categories</strong> and create clear folders:
                       <ul>
-                        <li><em>For Clients: Project Process &amp; Onboarding</em></li>
-                        <li><em>For Clients: CSG Methods &amp; Frameworks</em></li>
-                        <li><em>Internal: CSG Consultant SOPs &amp; HubSpot Guides</em></li>
+                        <li><em>Client Onboarding &amp; Project Process</em> (External)</li>
+                        <li><em>CSG Consulting Frameworks &amp; Methodologies</em> (External)</li>
+                        <li><em>Internal CSG SOPs &amp; HubSpot Guides</em> (Internal)</li>
                       </ul>
                     </li>
-                    <li>Click <strong>Create article</strong> in the top right.</li>
-                    <li>Enter a clear title (e.g., <em>How Does a CSG Diagnostic Assessment Phase Work?</em>).</li>
-                    <li>Use the rich-text editor to populate the article with subheadings, bullet points, screenshots, and embedded Loom/YouTube videos.</li>
+                    <li>Click <strong>Create article</strong> (top right), enter a clear question-based title (e.g., <em>"What to Expect During a CSG Diagnostic Assessment Phase"</em>), and use headings, bullet lists, screenshots, and embedded Loom/YouTube videos in the editor.</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 3: Control Audience Access &amp; Publish</h5>
+                  <h5>Step 3: Control Audience Access, Publish &amp; Track Insights</h5>
                   <ol>
-                    <li>In the right sidebar under <strong>Control audience access</strong>, select:
-                      <ul>
-                        <li><strong>Public</strong> for client FAQs.</li>
-                        <li><strong>Private &ndash; Password-protected or registration required</strong> for internal student SOPs.</li>
-                      </ul>
-                    </li>
-                    <li>Click <strong>Publish</strong>. Under the <strong>Insights</strong> tab, the team can later see exactly which articles are read most frequently and where clients still have open questions.</li>
+                    <li>In the right sidebar under <strong>Control audience access</strong>, choose <strong>Public</strong> for client-facing articles or <strong>Private &ndash; Password required</strong> for internal consultant SOPs.</li>
+                    <li>Click <strong>Publish</strong>. Review the <strong>Insights</strong> tab monthly to see top-viewed articles and search terms with zero results (indicating new articles to write).</li>
                   </ol>
                 </div>
               </div>
             </div>
 
-            <!-- 3. Permissions & Exact Links -->
+            <!-- 3. Links -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">3</span> Permissions &amp; Academy Links</div>
+              <div class="mod-subblock-title"><span class="step-tag">3</span> Links to HubSpot Academy Videos &amp; Knowledge Base</div>
               <div class="academy-links-box">
-                <div class="perm-note">
-                  <strong>Permissions:</strong> Reading is possible in a <strong>Core Seat</strong>; creating, categorizing, and publishing requires a <strong>Service Hub Pro Seat</strong>.
-                </div>
-                <div class="academy-topic-header">HubSpot Academy: Creating and Managing a Knowledge Base (Search Keywords: <code>Knowledge Base</code>, <code>Help Articles</code>)</div>
                 <ul>
+                  <li>
+                    <span class="link-type-badge">Full Lesson</span>
+                    <strong>Setting up your Knowledge Base for Success (Adriti Gulati)</strong> — Domains, categories, branding, article imports, and reporting &rarr;
+                    <a href="https://academy.hubspot.com/lessons/setting-up-your-knowledge-base-for-success" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/setting-up-your-knowledge-base-for-success</a>
+                  </li>
                   <li>
                     <span class="link-type-badge">Knowledge Base</span>
                     <strong>Customize Knowledge Base Settings</strong> &rarr;
                     <a href="https://knowledge.hubspot.com/knowledge-base/customize-knowledge-base-settings" target="_blank" rel="noopener">https://knowledge.hubspot.com/knowledge-base/customize-knowledge-base-settings</a>
                   </li>
                   <li>
-                    <span class="link-type-badge">Knowledge Base</span>
-                    <strong>Knowledge Base HubSpot Base</strong> &rarr;
+                    <span class="link-type-badge">Service Guide</span>
+                    <strong>HubSpot Service Tools Documentation: Knowledge Base</strong> &rarr;
                     <a href="https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&hubs_content-cta=kb-see-more#knowledge-base" target="_blank" rel="noopener">https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&amp;hubs_content-cta=kb-see-more#knowledge-base</a>
                   </li>
-                  <li>
-                    <span class="link-type-badge">Lesson</span>
-                    <strong>Setting up your Knowledge Base for Success (lesson, Adriti Gulati)</strong> — domains, categories, branding, multilingual articles, imports, and reporting &rarr;
-                    <a href="https://academy.hubspot.com/lessons/setting-up-your-knowledge-base-for-success" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/setting-up-your-knowledge-base-for-success</a>
-                  </li>
                 </ul>
+                <div class="keywords-line">
+                  <strong>HubSpot Academy Search Keywords:</strong> <code>Knowledge Base Setup</code>, <code>Creating and Managing a Knowledge Base</code>, <code>Publishing Help Articles</code>
+                </div>
               </div>
             </div>
           </div>
@@ -1155,85 +1864,85 @@
           <div class="module-header" onclick="toggleSingleModule(this)">
             <div class="module-title-group">
               <div class="module-badge-row">
-                <span class="mod-num">Module 06 &bull; Protected Client Login Portal</span>
-                <span class="seat-pill">Setup &amp; Portal Access Management: Service Hub Pro Seat</span>
+                <span class="mod-num">Module 06 &bull; Authenticated Client Transparency Hub</span>
+                <span class="seat-pill">View Portal Contacts: Core Seat | Configure &amp; Invite Clients: Service Pro Seat</span>
               </div>
-              <h4>6. Customer Portal (Protected Client Portal)</h4>
+              <h4>6. Customer Portal (Secure Client Login Portal)</h4>
             </div>
             <span class="toggle-icon">&minus;</span>
           </div>
           <div class="module-body">
-            <!-- 1. What is the function & how it works -->
+            <!-- 1. Functionality -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; How It Works</div>
+              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; What Does It Do?</div>
               <div class="func-grid">
                 <div class="func-box">
                   <h5>General Functionality</h5>
                   <p>
-                    The Customer Portal is a secure login area on your website where external clients log in with their own credentials. Inside, they see a clear list of all their open tickets, can track current processing status, send messages to the consulting team, and access direct links to the Knowledge Base.
+                    A secure, authenticated web portal where external clients log in with their own credentials to view the real-time status of their open support and project tickets, review complete communication threads, submit new requests, and browse linked Knowledge Base resources. It connects directly to Help Desk ticket permissions so clients only see tickets tied to their contact or company.
                   </p>
                 </div>
                 <div class="func-box csg">
-                  <h5>Specific Application &amp; Value for CSG</h5>
+                  <h5>CSG Specific Application</h5>
                   <ul>
-                    <li><strong>Maximum Transparency &amp; Professionalism for Sponsors:</strong> Executive project sponsors (such as CEOs or VPs at client companies) no longer have to email asking, <em>"What is the current status of our SOP draft?"</em> They log in and see all open workstreams and responses live.</li>
-                    <li><strong>Clear Communication Boundaries:</strong> All official project updates run centrally through the portal instead of scattered individual emails.</li>
+                    <li><strong>Executive Client Visibility:</strong> Gives CEOs and VPs at partner organizations (e.g., <em>Alcomy</em>) real-time visibility into ongoing project deliverables, data requests, and scope items—eliminating back-and-forth <em>"What is the status?"</em> emails.</li>
+                    <li><strong>Professional Boundaries &amp; Deliverable Log:</strong> Centralizes official milestone handoffs (Phase 1 Assessment, Phase 2 Org Design, Phase 3 Final Deck) in one branded portal while keeping internal student discussions private.</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <!-- 2. Step-by-Step Guide -->
+            <!-- 2. Implementation & Step-by-Step -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">2</span> Step-by-Step Guide: Setup, Usage &amp; Data Input</div>
+              <div class="mod-subblock-title"><span class="step-tag">2</span> How to Implement, Use &amp; Input Our Information (Step-by-Step)</div>
               <div class="step-list">
                 <div class="step-item">
-                  <h5>Step 1: Configure Portal &amp; Customize Branding</h5>
+                  <h5>Step 1: Configure Portal Domain &amp; CSG Branding</h5>
                   <ol>
-                    <li>Go to <code class="ui-path">Settings &gt; Inbox &amp; Help Desk &gt; Customer Portal</code>.</li>
-                    <li>Connect the portal to your domain (e.g., <code>portal.cougarstrategy.org</code>).</li>
-                    <li>Under the <strong>Theme</strong> tab, customize the login screen and header with CSG branding.</li>
+                    <li>Navigate to <code class="ui-path">Settings &gt; Inbox &amp; Help Desk &gt; Customer Portal</code>.</li>
+                    <li>Connect your dedicated subdomain (e.g., <code>portal.cougarstrategy.org</code>).</li>
+                    <li>Open the <strong>Theme / Design</strong> tab and customize the login screen, header logo, and colors to match CSG branding.</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 2: Define Ticket Visibility Rules</h5>
+                  <h5>Step 2: Set Ticket Visibility &amp; Pipeline Permissions</h5>
                   <ol>
-                    <li>Open the <strong>General</strong> tab.</li>
-                    <li>Under <strong>Ticket permissions</strong>, choose which tickets the client sees after logging in:
-                      <ul>
-                        <li>Select <strong>All tickets associated with the customer's company</strong> (ideal for CEOs/sponsors so they can oversee every workstream of their project).</li>
-                      </ul>
-                    </li>
-                    <li>Select which ticket pipelines may be displayed in the portal (e.g., <em>CSG Client Deliverables &amp; Support</em>, excluding purely internal admin pipelines).</li>
+                    <li>Open the <strong>General</strong> tab inside Customer Portal settings.</li>
+                    <li>Under <strong>Ticket permissions</strong>, select <strong>Allow customers to view all tickets associated with their company</strong> so executive sponsors can monitor every workstream across their engagement.</li>
+                    <li>Restrict visible pipelines to <strong>CSG Client Deliverables &amp; Support</strong> so purely internal administrative tickets never appear to external clients.</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 3: Invite Clients &amp; Daily Usage</h5>
+                  <h5>Step 3: Invite Clients &amp; Manage Portal Updates</h5>
                   <ol>
-                    <li>Open <code class="ui-path">CRM &gt; Contacts</code>, select the client's primary point of contact, and click <strong>Actions &gt; Send customer portal invitation</strong> on the right.</li>
-                    <li>When student consultants work on a ticket in Help Desk, every regular email reply automatically appears as thread history in the Customer Portal—internal notes (<strong>Comments</strong>) remain invisible to the client.</li>
+                    <li><strong>Manual or Automated Invite:</strong> Open <code class="ui-path">CRM &gt; Contacts</code>, select the client sponsor (e.g., <code>ilija@alcomy.com</code>), and click <strong>Actions &gt; Send customer portal invitation</strong> (or automate this via a Deal workflow when a deal reaches <em>Closed Won</em>).</li>
+                    <li><strong>Daily Usage:</strong> Any standard email reply sent inside a Help Desk ticket automatically appears in the client's portal feed; yellow <strong>Internal Notes (Comments)</strong> remain strictly invisible to the client.</li>
                   </ol>
                 </div>
               </div>
             </div>
 
-            <!-- 3. Permissions & Exact Links -->
+            <!-- 3. Links -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">3</span> Permissions &amp; Academy Links</div>
+              <div class="mod-subblock-title"><span class="step-tag">3</span> Links to HubSpot Academy Videos &amp; Knowledge Base</div>
               <div class="academy-links-box">
-                <div class="perm-note">
-                  <strong>Permissions:</strong> Setup and management of portal access require a <strong>Service Hub Pro Seat</strong>.
-                </div>
-                <div class="academy-topic-header">HubSpot Academy: Setting Up a Customer Portal in HubSpot (Search Keywords: <code>Customer Portal</code>, <code>Client Portal</code>)</div>
                 <ul>
                   <li>
-                    <span class="link-type-badge">Lesson</span>
-                    <strong>Setting up Customer Portal (lesson, Adriti Gulati)</strong> — domains, authentication, branding, filtering visible tickets, and connecting your knowledge base &rarr;
+                    <span class="link-type-badge">Full Lesson</span>
+                    <strong>Setting up Customer Portal (Adriti Gulati)</strong> — Domains, authentication, branding, filtering visible tickets, and connecting your Knowledge Base &rarr;
                     <a href="https://academy.hubspot.com/lessons/setting-up-customer-portal" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/setting-up-customer-portal</a>
                   </li>
+                  <li>
+                    <span class="link-type-badge">Service Guide</span>
+                    <strong>HubSpot Service Tools Documentation: Customer Portal</strong> &rarr;
+                    <a href="https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&hubs_content-cta=kb-see-more#customer-portal" target="_blank" rel="noopener">https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&amp;hubs_content-cta=kb-see-more#customer-portal</a>
+                  </li>
                 </ul>
+                <div class="keywords-line">
+                  <strong>HubSpot Academy Search Keywords:</strong> <code>Customer Portal Setup</code>, <code>Setting Up a Customer Portal in HubSpot</code>, <code>Client Portal</code>
+                </div>
               </div>
             </div>
           </div>
@@ -1246,66 +1955,58 @@
           <div class="module-header" onclick="toggleSingleModule(this)">
             <div class="module-title-group">
               <div class="module-badge-row">
-                <span class="mod-num">Module 07 &bull; Satisfaction Surveys &amp; Historical Survey Import</span>
-                <span class="seat-pill">Read &amp; CSV Import: Core Seat (w/ Import) | Native Surveys: Service Hub Pro Seat</span>
+                <span class="mod-num">Module 07 &bull; CSAT, NPS &amp; Historical Survey CSV Import</span>
+                <span class="seat-pill">Read &amp; CSV Import: Core Seat (w/ Import) | Native Automated Surveys: Service Pro Seat</span>
               </div>
-              <h4>7. Feedback Surveys (Satisfaction Surveys &amp; Importing Existing Surveys)</h4>
+              <h4>7. Feedback Surveys (Automated CSAT/NPS &amp; Historical CSV Import)</h4>
             </div>
             <span class="toggle-icon">&minus;</span>
           </div>
           <div class="module-body">
-            <!-- 1. What is the function & how it works -->
+            <!-- 1. Functionality -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; How It Works</div>
+              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; What Does It Do?</div>
               <div class="func-grid">
                 <div class="func-box">
                   <h5>General Functionality</h5>
                   <p>
-                    The Feedback Surveys module creates, distributes, and analyzes standardized client satisfaction surveys:
+                    An automated client-listening engine for creating, distributing, and analyzing <strong>CSAT</strong> (Customer Satisfaction), <strong>NPS</strong> (Net Promoter Score, 0–10 loyalty scale), <strong>CES</strong> (Customer Effort Score), and custom multi-question surveys via email, web link, or chat. Every rating and open-text comment writes directly to the respondent's Contact and Company record and can trigger follow-up workflows.
                   </p>
-                  <ul>
-                    <li><strong>CSAT (Customer Satisfaction):</strong> Measures satisfaction after a concrete milestone or project completion (e.g., <em>"How satisfied were you with Phase 1?"</em>).</li>
-                    <li><strong>NPS (Net Promoter Score):</strong> Measures willingness to recommend on a 0–10 scale (<em>"How likely are you to recommend CSG?"</em>).</li>
-                    <li><strong>Custom Surveys:</strong> Individual questionnaires with free-text fields, multiple-choice, and star ratings. All responses are automatically stored on the Contact and Company record.</li>
-                  </ul>
                 </div>
                 <div class="func-box csg">
-                  <h5>Specific Application &amp; Value for CSG</h5>
+                  <h5>CSG Specific Application</h5>
                   <ul>
-                    <li><strong>Central Foundation for Marketing Team 2:</strong> Team 2 investigates what went well or poorly in past CSG projects and gathers proof points. With Feedback Surveys, all ratings and quotes live in one central place instead of scattered Google Forms or Excel sheets.</li>
-                    <li><strong>Automated Testimonial Collection:</strong> If a client rates the project 9 or 10, HubSpot can automatically send a thank-you email asking permission to publish their feedback as a quote on the CSG website.</li>
+                    <li><strong>Central Evidence Hub for Marketing Team 2:</strong> Consolidates all quantitative proof points (average NPS/CSAT) and quotable client testimonials in one CRM database instead of scattered Google Forms or Excel files.</li>
+                    <li><strong>Automated Testimonial &amp; Recovery Loops:</strong> If a client submits an NPS score of 9 or 10 after final presentation, HubSpot automatically sends a thank-you email asking permission to feature their quote on the CSG website. Scores &le; 6 immediately alert leadership for service recovery.</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <!-- 2. Step-by-Step Guide (Part A + Part B) -->
+            <!-- 2. Implementation & Step-by-Step (Part A + Part B) -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">2</span> Step-by-Step Guide: Setup, Usage &amp; Importing Existing Data</div>
+              <div class="mod-subblock-title"><span class="step-tag">2</span> How to Implement, Use &amp; Input Our Information (Step-by-Step)</div>
               <div class="step-list">
                 <div class="step-item">
-                  <h5>Part A: Create a New Automated Survey</h5>
+                  <h5>Part A: Create &amp; Automate New CSG Surveys</h5>
                   <ol>
-                    <li>Go to <code class="ui-path">Service &gt; Feedback Surveys</code> and click <strong>Create survey</strong>.</li>
-                    <li>Select the type: <strong>Customer satisfaction (CSAT)</strong>, <strong>Customer loyalty (NPS)</strong>, or <strong>Custom survey</strong>.</li>
-                    <li>Select the delivery method: <strong>Email</strong> (for personalized links) or <strong>Shareable link</strong> (for embedding in final presentations).</li>
-                    <li>Customize the questions and CSG logo under the <strong>Survey</strong> tab.</li>
-                    <li><strong>Configure Automation (Automation / Recipients Tab):</strong>
+                    <li>Navigate to <code class="ui-path">Service &gt; Feedback Surveys</code> and click <strong>Create survey</strong>.</li>
+                    <li>Select survey type: <strong>Customer satisfaction (CSAT)</strong> for milestone/project evaluation, <strong>Customer loyalty (NPS)</strong> for brand advocacy, or <strong>Custom survey</strong>.</li>
+                    <li>Choose delivery channel (<strong>Email</strong> for personalized tracking or <strong>Shareable link</strong> to embed on the final presentation slide).</li>
+                    <li>Customize questions and CSG branding under the <strong>Survey</strong> tab.</li>
+                    <li><strong>Set Automated Triggers (Recipients / Automation Tab):</strong>
                       <ul>
-                        <li><em>Trigger 1 (Post-Project):</em> Send the survey automatically 3 days after the associated Deal moves to <code>Closed Won / Project Completed</code>.</li>
-                        <li><em>Trigger 2 (End-of-Semester Check-In):</em> Create a scheduled workflow for the final week of the semester that sends a semester-review survey to all contacts with <code>Engagement Status = Active</code>.</li>
+                        <li><em>Post-Project Trigger:</em> Send automatically 3 days after a Deal moves to <code>Closed Won / Project Completed</code>.</li>
+                        <li><em>End-of-Semester Trigger:</em> Trigger a scheduled workflow in Week 13 for all contacts with <code>Engagement Status = Active</code>.</li>
                       </ul>
                     </li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Part B: Import Existing / Historical Surveys (CSV Import)</h5>
-                  <p style="font-size:13.5px; color:var(--ink-secondary); margin-bottom:6px;">
-                    If CSG already holds older survey results from prior semesters (e.g., from Qualtrics, Google Forms, Microsoft Forms, or Excel), import them centrally into HubSpot as follows:
-                  </p>
+                  <h5>Part B: How to Input Pre-Existing / Historical Surveys (CSV Import)</h5>
                   <ol>
-                    <li><strong>Create Custom Properties in HubSpot:</strong> Go to <code class="ui-path">Settings &gt; Properties &gt; Contact Properties</code> and create matching fields for historical data:
+                    <li><strong>Create Custom Contact Properties First:</strong> Go to <code class="ui-path">Settings &gt; Properties &gt; Contact Properties</code> and create:
                       <ul>
                         <li><code>Historical NPS Score</code> (Field type: Number)</li>
                         <li><code>Past Project CSAT Rating</code> (Field type: Dropdown 1–5)</li>
@@ -1313,25 +2014,31 @@
                         <li><code>Survey Completion Date</code> (Field type: Date picker)</li>
                       </ul>
                     </li>
-                    <li><strong>Prepare Excel / CSV File:</strong> Open your existing survey table and name the column headers cleanly: <code>Email</code>, <code>First Name</code>, <code>Last Name</code>, <code>Company Name</code>, <code>Historical NPS Score</code>, <code>Client Feedback &amp; Testimonial Quote</code>, <code>Survey Completion Date</code>. Save the file as <strong>.csv (UTF-8)</strong>.</li>
-                    <li><strong>Run Import in HubSpot:</strong> Go to <code class="ui-path">CRM &gt; Contacts</code> and click <strong>Import</strong> (top right) &rarr; select <strong>File from computer &gt; One file &gt; One object &gt; Contacts</strong> (or <em>Multiple objects</em> to link Contacts and Companies simultaneously) &rarr; upload the <code>.csv</code> file &rarr; map each column to its corresponding HubSpot property (e.g., Rating column &rarr; <code>Historical NPS Score</code>) &rarr; click <strong>Finish import</strong>. HubSpot matches existing clients by email address without creating duplicates.</li>
+                    <li><strong>Format Your Excel / Google Forms / Qualtrics File:</strong> Rename row 1 headers cleanly to: <code>Email</code>, <code>First Name</code>, <code>Last Name</code>, <code>Company Name</code>, <code>Historical NPS Score</code>, <code>Client Feedback &amp; Testimonial Quote</code>, <code>Survey Completion Date</code>, and save as <strong>.csv (UTF-8)</strong>.</li>
+                    <li><strong>Import into HubSpot:</strong> Go to <code class="ui-path">CRM &gt; Contacts</code> &rarr; click <strong>Import</strong> (top right) &rarr; <strong>File from computer &gt; One file &gt; One object &gt; Contacts</strong> &rarr; upload your <code>.csv</code>, map each column to its matching HubSpot property, and click <strong>Finish import</strong>. HubSpot matches existing clients by email without creating duplicates.</li>
                   </ol>
                 </div>
               </div>
               <div class="callout warn" style="margin-top:12px; margin-bottom:0;">
-                <strong>Reporting Note:</strong> Imported CSV values appear as regular properties on the Contact record, not in HubSpot's native Survey Analytics reports—use Custom Reports in Module 8 to chart historical values.
+                <strong>Reporting Note for Imported CSV Surveys:</strong> CSV-imported survey values are stored as standard custom properties on Contact records—they do <em>not</em> populate HubSpot's native Survey Analytics charts. To chart historical scores alongside new surveys, build a <strong>Custom Report</strong> in Module 8 using your custom properties.
               </div>
             </div>
 
-            <!-- 3. Permissions & Exact Links -->
+            <!-- 3. Links -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">3</span> Permissions &amp; Academy Links</div>
+              <div class="mod-subblock-title"><span class="step-tag">3</span> Links to HubSpot Academy Videos &amp; Knowledge Base</div>
               <div class="academy-links-box">
-                <div class="perm-note">
-                  <strong>Permissions:</strong> With a <strong>Core Seat</strong>, you can view submitted survey results on Contact records (and import them via CSV if Import permissions are active). Creating and automatically sending native surveys requires a <strong>Service Hub Pro Seat</strong>.
-                </div>
-                <div class="academy-topic-header">HubSpot Academy: Creating Feedback Surveys in HubSpot (Search Keywords: <code>Feedback Surveys</code>, <code>NPS CSAT HubSpot</code>)</div>
                 <ul>
+                  <li>
+                    <span class="link-type-badge">Full Lesson</span>
+                    <strong>Setting up Customer Feedback (Adriti Gulati)</strong> — HubSpot's feedback framework, NPS, CES, CSAT, custom surveys, and turning happy customers into advocates &rarr;
+                    <a href="https://academy.hubspot.com/lessons/hubspot-customer-feedback-tutorial" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/hubspot-customer-feedback-tutorial</a>
+                  </li>
+                  <li>
+                    <span class="link-type-badge">Knowledge Base</span>
+                    <strong>Create and Send Customer Satisfaction Surveys</strong> &rarr;
+                    <a href="https://knowledge.hubspot.com/customer-feedback/create-and-send-customer-satisfaction-surveys" target="_blank" rel="noopener">https://knowledge.hubspot.com/customer-feedback/create-and-send-customer-satisfaction-surveys</a>
+                  </li>
                   <li>
                     <span class="link-type-badge">Knowledge Base</span>
                     <strong>Create a Custom Survey</strong> &rarr;
@@ -1343,21 +2050,14 @@
                     <a href="https://knowledge.hubspot.com/customer-feedback/how-do-i-send-a-customer-support-survey" target="_blank" rel="noopener">https://knowledge.hubspot.com/customer-feedback/how-do-i-send-a-customer-support-survey</a>
                   </li>
                   <li>
-                    <span class="link-type-badge">Knowledge Base</span>
-                    <strong>Create and Send Customer Satisfaction Surveys</strong> &rarr;
-                    <a href="https://knowledge.hubspot.com/customer-feedback/create-and-send-customer-satisfaction-surveys" target="_blank" rel="noopener">https://knowledge.hubspot.com/customer-feedback/create-and-send-customer-satisfaction-surveys</a>
-                  </li>
-                  <li>
-                    <span class="link-type-badge">Knowledge Base</span>
-                    <strong>Feedback Surveys HubSpot Knowledge Base</strong> &rarr;
+                    <span class="link-type-badge">Service Guide</span>
+                    <strong>HubSpot Service Tools Documentation: Feedback Surveys</strong> &rarr;
                     <a href="https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&hubs_content-cta=kb-see-more#feedback-surveys" target="_blank" rel="noopener">https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&amp;hubs_content-cta=kb-see-more#feedback-surveys</a>
                   </li>
-                  <li>
-                    <span class="link-type-badge">Lesson</span>
-                    <strong>Setting up Customer Feedback (lesson, Adriti Gulati)</strong> — HubSpot’s feedback framework, NPS, CES, CSAT, custom surveys, and turning happy customers into advocates &rarr;
-                    <a href="https://academy.hubspot.com/lessons/hubspot-customer-feedback-tutorial" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/hubspot-customer-feedback-tutorial</a>
-                  </li>
                 </ul>
+                <div class="keywords-line">
+                  <strong>HubSpot Academy Search Keywords:</strong> <code>Feedback Surveys</code>, <code>NPS CSAT HubSpot</code>, <code>Customer Feedback Tutorial</code>
+                </div>
               </div>
             </div>
           </div>
@@ -1370,105 +2070,113 @@
           <div class="module-header" onclick="toggleSingleModule(this)">
             <div class="module-title-group">
               <div class="module-badge-row">
-                <span class="mod-num">Module 08 &bull; Reports, Metrics &amp; Executive Dashboards</span>
-                <span class="seat-pill">View &amp; Filter: Core Seat | Custom Reports &amp; Exports: Service Seat</span>
+                <span class="mod-num">Module 08 &bull; Executive Dashboards &amp; Semester KPIs</span>
+                <span class="seat-pill">View &amp; Filter: Core Seat | Build Custom Reports &amp; Scheduled PDFs: Service Pro Seat</span>
               </div>
-              <h4>8. Service Analytics (Reports, Metrics &amp; Executive Dashboards)</h4>
+              <h4>8. Service Analytics (Service Reporting &amp; Executive Dashboards)</h4>
             </div>
             <span class="toggle-icon">&minus;</span>
           </div>
           <div class="module-body">
-            <!-- 1. What is the function & how it works -->
+            <!-- 1. Functionality -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; How It Works</div>
+              <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; What Does It Do?</div>
               <div class="func-grid">
                 <div class="func-box">
                   <h5>General Functionality</h5>
                   <p>
-                    Service Analytics is the specialized evaluation and reporting suite of Service Hub. It offers over 20 pre-built standard reports plus a Custom Report Builder to visually display ticket volume, average response times, resolution speeds, support workload per team member, and customer satisfaction trends (CSAT/NPS) over time.
+                    Service Analytics is HubSpot's dedicated service reporting suite featuring 20+ pre-built standard reports plus a Custom Report Builder. It visualizes ticket volume, SLA compliance, average <strong>Time to First Reply</strong>, average <strong>Time to Close</strong>, consultant workload, and <strong>CSAT/NPS</strong> trends over time.
                   </p>
                 </div>
                 <div class="func-box csg">
-                  <h5>Specific Application &amp; Value for CSG</h5>
+                  <h5>CSG Specific Application</h5>
                   <ul>
-                    <li><strong>ROI &amp; Quality Proof for Paul Godfrey:</strong> Shows faculty leadership and the board with hard numbers how quickly student teams respond to client inquiries, average client satisfaction across all projects, and which topics generate the most follow-up questions.</li>
-                    <li><strong>Data Foundation for Marketing Team 1 &amp; Team 2:</strong> Combines satisfaction scores with client segments (e.g., whether tech startups or mid-market firms yield higher NPS scores) to prioritize future target audiences based on data.</li>
+                    <li><strong>Hard ROI &amp; Quality Proof for Paul Godfrey:</strong> Demonstrates to faculty leadership with objective numbers how quickly student teams respond to clients, how many deliverables are completed, and how satisfaction trends across semesters.</li>
+                    <li><strong>Segment Intelligence for Marketing Team 1:</strong> Cross-references NPS/CSAT scores with Target Client Segments (e.g., SaaS startups vs. mid-market firms) so CSG prioritizes the highest-satisfaction client industries.</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <!-- 2. Step-by-Step Guide -->
+            <!-- 2. Implementation & Step-by-Step -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">2</span> Step-by-Step Guide: Setup, Usage &amp; Data Input</div>
+              <div class="mod-subblock-title"><span class="step-tag">2</span> How to Implement, Use &amp; Input Our Information (Step-by-Step)</div>
               <div class="step-list">
                 <div class="step-item">
-                  <h5>Step 1: Review &amp; Filter Standard Reports</h5>
+                  <h5>Step 1: Explore &amp; Filter Pre-Built Service Reports</h5>
                   <ol>
                     <li>Navigate to <code class="ui-path">Service &gt; Service Analytics</code>.</li>
-                    <li>Select the desired report category in the left menu:
+                    <li>Select a report category in the left sidebar:
                       <ul>
-                        <li><strong>Customer Outcomes:</strong> CSAT trend over time, NPS distribution (Promoters vs. Detractors).</li>
-                        <li><strong>Response Times:</strong> Average Time to First Reply, Average Resolution Duration.</li>
-                        <li><strong>Ticket Volume:</strong> Tickets created by category/project phase.</li>
+                        <li><strong>Customer Outcomes:</strong> CSAT score over time, NPS distribution (Promoters vs. Passives vs. Detractors).</li>
+                        <li><strong>Response Times:</strong> Average Time to First Reply, Average Time to Close, SLA attainment rate.</li>
+                        <li><strong>Ticket Volume:</strong> Tickets created by channel, priority, or project phase.</li>
                       </ul>
                     </li>
-                    <li>Use the global filters at the top to narrow the timeframe to one exact semester (e.g., <em>This quarter / Last 90 days</em>).</li>
+                    <li>Use the global date filter at the top to isolate the current semester (e.g., <em>This quarter / Last 90 days</em>).</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 2: Pin Reports to the CSG Executive Dashboard</h5>
+                  <h5>Step 2: Pin Key Metrics to the CSG Executive Leadership Dashboard</h5>
                   <ol>
-                    <li>Once you find an important report (e.g., <em>NPS Score by Client Segment</em>), click <strong>Save report</strong> in the top right of the report.</li>
-                    <li>Select <strong>Add to existing dashboard</strong> and choose the <strong>CSG Executive Leadership Dashboard</strong>.</li>
-                    <li>Repeat this for the 3 most important service metrics so Paul has all Marketing, Sales, and Service KPIs on one single overview page.</li>
+                    <li>Open a core report (e.g., <em>Average Time to First Reply</em> or <em>NPS Score by Client Segment</em>) and click <strong>Save report</strong> (top right).</li>
+                    <li>Select <strong>Add to existing dashboard</strong> and choose <strong>CSG Executive Leadership Dashboard</strong>.</li>
+                    <li>Repeat for your top 3 service KPIs so Paul Godfrey sees Marketing, Sales, and Service performance on one single executive screen.</li>
                   </ol>
                 </div>
 
                 <div class="step-item">
-                  <h5>Step 3: Schedule Automated Report Delivery</h5>
+                  <h5>Step 3: Automate Monthly Executive PDF Reports</h5>
                   <ol>
-                    <li>Open <code class="ui-path">Reporting &gt; Dashboards</code> and select the <strong>CSG Executive Leadership Dashboard</strong>.</li>
-                    <li>Click <strong>Share &gt; Email this dashboard</strong> in the top right.</li>
-                    <li>Enter the email addresses of Paul Godfrey and the Team Leads.</li>
-                    <li>Select <strong>Recurring &ndash; Monthly (on the 1st day of the month)</strong> and <strong>PDF</strong> file format. Leadership will now automatically receive an updated performance report every month.</li>
+                    <li>Open <code class="ui-path">Reporting &gt; Dashboards</code> and select <strong>CSG Executive Leadership Dashboard</strong>.</li>
+                    <li>Click <strong>Share &gt; Email this dashboard</strong> (top right).</li>
+                    <li>Enter the email addresses of Paul Godfrey and the CSG Team Leads, select <strong>Recurring &ndash; Monthly (1st of every month)</strong>, choose <strong>PDF attachment</strong>, and click <strong>Schedule</strong>.</li>
                   </ol>
                 </div>
               </div>
             </div>
 
-            <!-- 3. Permissions & Exact Links -->
+            <!-- 3. Links -->
             <div class="mod-subblock">
-              <div class="mod-subblock-title"><span class="step-tag">3</span> Permissions &amp; Academy Links</div>
+              <div class="mod-subblock-title"><span class="step-tag">3</span> Links to HubSpot Academy Videos &amp; Knowledge Base</div>
               <div class="academy-links-box">
-                <div class="perm-note">
-                  <strong>Permissions:</strong> In a <strong>Core Seat</strong>, you can fully view and filter existing dashboards and Service Analytics reports. Creating new custom reports requires a <strong>Service Seat</strong> (or reporting edit permissions).
-                </div>
-                <div class="academy-topic-header">HubSpot Academy: Understanding Service Analytics &amp; Reporting (Search Keywords: <code>Service Analytics</code>, <code>Custom Dashboards</code>)</div>
                 <ul>
                   <li>
-                    <span class="link-type-badge">Lesson</span>
-                    <strong>Setting up Service Reports and Analytics (lesson, Adriti Gulati)</strong> — navigating service reports, dashboards, and key metrics like CSAT and ticket replies &rarr;
+                    <span class="link-type-badge">Full Lesson</span>
+                    <strong>Setting up Service Reports and Analytics (Adriti Gulati)</strong> — Navigating service reports, dashboards, and key metrics like CSAT and ticket replies &rarr;
                     <a href="https://academy.hubspot.com/lessons/setting-up-service-reports-and-analytics" target="_blank" rel="noopener">https://academy.hubspot.com/lessons/setting-up-service-reports-and-analytics</a>
                   </li>
+                  <li>
+                    <span class="link-type-badge">Certification</span>
+                    <strong>HubSpot Reporting Certification</strong> — Complete course on custom report building and executive dashboards &rarr;
+                    <a href="https://academy.hubspot.com/courses/reporting" target="_blank" rel="noopener">https://academy.hubspot.com/courses/reporting</a>
+                  </li>
+                  <li>
+                    <span class="link-type-badge">Service Guide</span>
+                    <strong>HubSpot Service Tools Documentation: Service Analytics</strong> &rarr;
+                    <a href="https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&hubs_content-cta=kb-see-more#service-analytics" target="_blank" rel="noopener">https://knowledge.hubspot.com/service-tools/topics?hubs_content=knowledge.hubspot.com/service-tools&amp;hubs_content-cta=kb-see-more#service-analytics</a>
+                  </li>
                 </ul>
+                <div class="keywords-line">
+                  <strong>HubSpot Academy Search Keywords:</strong> <code>Service Analytics Reports</code>, <code>Building Custom Dashboards in HubSpot</code>, <code>Service Reports and Analytics</code>
+                </div>
               </div>
             </div>
           </div>
         </article>
       </div>
 
-      <!-- PART D: SERVICE-ONLY MASTER START, SANDBOX & HANDOVER CHECKLIST -->
+      <!-- PART E: SERVICE-ONLY MASTER START, SANDBOX & HANDOVER CHECKLIST -->
       <div class="part-block">
         <div class="part-heading">
-          <h3>Part D — Service Hub Rollout, Sandbox <span class="blue">&amp; Cohort Handover Checklist</span></h3>
+          <h3>Part E — Service Hub Rollout, Sandbox <span class="blue">&amp; Cohort Handover Checklist</span></h3>
           <span class="part-tag">Interactive Service Checklist (Saved Locally)</span>
         </div>
 
         <div class="checklist-header-bar">
           <div>
-            <strong id="check-status-text">0 of 17 Service Tasks Completed</strong>
+            <strong id="check-status-text">0 of 19 Service Tasks Completed</strong>
             <div style="font-size:12.5px; color:var(--ink-secondary);">Rule of Thumb: Complete Phase 0 &amp; Phase 1 before onboarding the first live client into Help Desk.</div>
           </div>
           <div style="display:flex; align-items:center; gap:12px;">
@@ -1482,15 +2190,15 @@
           <label class="check-row"><input type="checkbox" data-check="s0-1" onchange="updateChecklist()"><span>Activate Service Hub Professional and assign the Service Pro Seat to the active Service Lead (grant Core/View-Only seats to remaining consultants).</span></label>
           <label class="check-row"><input type="checkbox" data-check="s0-2" onchange="updateChecklist()"><span>Designate 1–2 Super Admins (Paul Godfrey + designated student operations lead) and define escalation owner (VP of Operations).</span></label>
           <label class="check-row"><input type="checkbox" data-check="s0-3" onchange="updateChecklist()"><span>Create central shared support email (<code>client-support@cougarstrategy.org</code>) and confirm subdomains (<code>help.cougarstrategy.org</code> &amp; <code>portal.cougarstrategy.org</code>).</span></label>
-          <label class="check-row"><input type="checkbox" data-check="s0-4" onchange="updateChecklist()"><span>Gather CSG branding assets (logo, Navy/Gold hex codes), top 15 client FAQs, and historical survey spreadsheets.</span></label>
+          <label class="check-row"><input type="checkbox" data-check="s0-4" onchange="updateChecklist()"><span>Gather CSG branding assets (logo, Navy/Royal Blue hex codes), top 15 client FAQs, and historical survey spreadsheets.</span></label>
         </div>
 
         <div class="phase-group">
           <h4>Phase 1: Core Technical Setup (In Exact Order)</h4>
           <label class="check-row"><input type="checkbox" data-check="s1-1" onchange="updateChecklist()"><span><strong>1. Connect Team Inbox:</strong> Link shared email to Help Desk and enable automatic ticket creation.</span></label>
           <label class="check-row"><input type="checkbox" data-check="s1-2" onchange="updateChecklist()"><span><strong>2. Configure Ticket Pipeline:</strong> Set stages (<em>New Request &rarr; Under Review &rarr; In Progress &rarr; Waiting on Client &rarr; Resolved</em>) and 3-day follow-up automation.</span></label>
-          <label class="check-row"><input type="checkbox" data-check="s1-3" onchange="updateChecklist()"><span><strong>3. Set SLAs &amp; Snippets:</strong> Configure first-response &amp; close SLAs with warning alerts and save standard email snippets.</span></label>
-          <label class="check-row"><input type="checkbox" data-check="s1-4" onchange="updateChecklist()"><span><strong>4. Create Custom Properties &amp; Saved Views:</strong> Add <em>CSG Client Health Score</em>, <em>Project Milestone Status</em>, and <em>Active/At-Risk CSG Clients</em> saved view + escalation task workflow.</span></label>
+          <label class="check-row"><input type="checkbox" data-check="s1-3" onchange="updateChecklist()"><span><strong>3. Set SLAs &amp; Snippets:</strong> Configure 24-hour first-response SLA with 3-hour warning alerts and save standard email snippets (e.g., <code>#datarequest</code>).</span></label>
+          <label class="check-row"><input type="checkbox" data-check="s1-4" onchange="updateChecklist()"><span><strong>4. Create Custom Properties &amp; Saved Views:</strong> Add <em>CSG Client Health Score</em>, <em>Project Milestone Status</em>, and <em>At-Risk CSG Engagements</em> saved view + escalation workflow.</span></label>
           <label class="check-row"><input type="checkbox" data-check="s1-5" onchange="updateChecklist()"><span><strong>5. First-30-Minutes Sandbox Drill:</strong> Have every new consultant create a test ticket, add a yellow internal <code>@mention</code> note, check Health Scores, and close the test ticket.</span></label>
         </div>
 
@@ -1505,16 +2213,16 @@
         <div class="phase-group">
           <h4>Phase 3 &amp; 4: Measurement, Team Rollout &amp; Week 13/14 Semester Handover</h4>
           <label class="check-row"><input type="checkbox" data-check="s3-1" onchange="updateChecklist()"><span><strong>10. Feedback Surveys &amp; CSV Import:</strong> Launch automated post-project CSAT/NPS surveys (with &ge;9 testimonial workflow) and import historical CSV survey results.</span></label>
-          <label class="check-row"><input type="checkbox" data-check="s3-2" onchange="updateChecklist()"><span><strong>11. Executive Dashboard:</strong> Add Time to First Reply, CSAT/NPS, and Ticket Volume to Paul Godfrey's Executive Dashboard with scheduled monthly PDF delivery.</span></label>
+          <label class="check-row"><input type="checkbox" data-check="s3-2" onchange="updateChecklist()"><span><strong>11. Executive Dashboard:</strong> Add Time to First Reply, CSAT/NPS, and Open Tickets to Paul Godfrey's Executive Dashboard with scheduled monthly PDF delivery.</span></label>
           <label class="check-row"><input type="checkbox" data-check="s3-3" onchange="updateChecklist()"><span><strong>12. Academy Playlist Completion:</strong> Ensure all consultants complete the Foundations lesson and Modules 1–8 in the HubSpot Academy playlist.</span></label>
           <label class="check-row"><input type="checkbox" data-check="s3-4" onchange="updateChecklist()"><span><strong>13. Week 13/14 Cohort Handover:</strong> Conduct 30-minute ticket &amp; pinned-note handover, record 2-minute Loom SOPs for any new workflows, and reassign paid seats from graduating seniors to incoming leads.</span></label>
         </div>
       </div>
 
-      <!-- PART E: INTERACTIVE SERVICE HUB KNOWLEDGE CHECK -->
+      <!-- PART F: INTERACTIVE SERVICE HUB KNOWLEDGE CHECK -->
       <div class="part-block">
         <div class="part-heading">
-          <h3>Part E — Interactive Service Hub <span class="blue">Knowledge Check</span></h3>
+          <h3>Part F — Interactive Service Hub <span class="blue">Knowledge Check</span></h3>
           <span class="part-tag">6-Question Consultant Verification Quiz</span>
         </div>
 
@@ -1531,7 +2239,7 @@
             <p class="q-title">2. How does CSG track Client Health Scores (Green / Yellow / Red) using our Service Hub Professional license?</p>
             <label class="quiz-opt"><input type="radio" name="q2" value="a"> A) Through the native Enterprise Customer Success Workspace menu.</label>
             <label class="quiz-opt"><input type="radio" name="q2" value="b"> B) In a private Excel spreadsheet maintained by each project team.</label>
-            <label class="quiz-opt"><input type="radio" name="q2" value="c"> C) Via custom Company properties (<em>CSG Client Health Score</em> &amp; <em>Project Milestone Status</em>), a saved CRM view, and an escalation task workflow.</label>
+            <label class="quiz-opt"><input type="radio" name="q2" value="c"> C) Via custom Company properties (<em>CSG Client Health Score</em> &amp; <em>Project Milestone Status</em>), a saved CRM risk view, and an escalation task workflow.</label>
             <div class="quiz-feedback" id="fb-2"></div>
           </div>
 
@@ -1581,12 +2289,22 @@
   </footer>
 
   <script>
+    // Hash Routing matching csg-7rs (#home, #marketing, #sales, #service)
     function navigateTo(sectionId) {
       const validSections = ['home', 'marketing', 'sales', 'service'];
       const target = validSections.includes(sectionId) ? sectionId : 'home';
-      document.querySelectorAll('.page-section').forEach(sec => sec.classList.toggle('active', sec.id === target));
-      document.querySelectorAll('.step-link').forEach(link => link.classList.toggle('active', link.getAttribute('data-nav') === target));
-      if (window.location.hash !== '#' + target) history.replaceState(null, '', '#' + target);
+
+      document.querySelectorAll('.page-section').forEach(sec => {
+        sec.classList.toggle('active', sec.id === target);
+      });
+
+      document.querySelectorAll('.step-link').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-nav') === target);
+      });
+
+      if (window.location.hash !== '#' + target) {
+        history.replaceState(null, '', '#' + target);
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1596,14 +2314,17 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      navigateTo(window.location.hash.replace('#', '') || 'home');
+      const initialHash = window.location.hash.replace('#', '');
+      navigateTo(initialHash || 'home');
       loadChecklist();
     });
 
+    // Expand / Collapse Service Modules
     function toggleSingleModule(headerEl) {
       const card = headerEl.closest('.module-card');
       card.classList.toggle('collapsed');
-      headerEl.querySelector('.toggle-icon').textContent = card.classList.contains('collapsed') ? '+' : '\u2212';
+      const icon = headerEl.querySelector('.toggle-icon');
+      icon.textContent = card.classList.contains('collapsed') ? '+' : '\u2212';
     }
 
     function toggleAllModules(expand) {
@@ -1614,10 +2335,12 @@
       });
     }
 
+    // Live Search Filter across Service Modules
     function filterModules() {
       const query = document.getElementById('moduleSearch').value.toLowerCase().trim();
       document.querySelectorAll('.module-card').forEach(card => {
-        const match = card.textContent.toLowerCase().includes(query);
+        const text = card.textContent.toLowerCase();
+        const match = text.includes(query);
         card.style.display = match ? 'block' : 'none';
         if (query && match) {
           card.classList.remove('collapsed');
@@ -1627,15 +2350,19 @@
       });
     }
 
+    // Interactive Checklist with localStorage
     function updateChecklist() {
       const boxes = document.querySelectorAll('input[type="checkbox"][data-check]');
       const state = {};
       let checkedCount = 0;
+
       boxes.forEach(box => {
-        state[box.getAttribute('data-check')] = box.checked;
+        const key = box.getAttribute('data-check');
+        state[key] = box.checked;
         if (box.checked) checkedCount++;
         box.closest('.check-row').classList.toggle('done', box.checked);
       });
+
       localStorage.setItem('csg_service_checklist_v1', JSON.stringify(state));
       const total = boxes.length;
       const pct = total ? Math.round((checkedCount / total) * 100) : 0;
@@ -1646,17 +2373,21 @@
     function loadChecklist() {
       const saved = JSON.parse(localStorage.getItem('csg_service_checklist_v1') || '{}');
       document.querySelectorAll('input[type="checkbox"][data-check]').forEach(box => {
-        if (saved[box.getAttribute('data-check')]) box.checked = true;
+        const key = box.getAttribute('data-check');
+        if (saved[key]) box.checked = true;
       });
       updateChecklist();
     }
 
     function resetChecklist() {
       localStorage.removeItem('csg_service_checklist_v1');
-      document.querySelectorAll('input[type="checkbox"][data-check]').forEach(box => box.checked = false);
+      document.querySelectorAll('input[type="checkbox"][data-check]').forEach(box => {
+        box.checked = false;
+      });
       updateChecklist();
     }
 
+    // Grade Service Knowledge Check Quiz
     function gradeQuiz() {
       const explanations = {
         1: 'Correct! Replying directly inside Help Desk logs the conversation on the Company record, satisfies SLA timers, and preserves context across semesters.',
@@ -1666,13 +2397,16 @@
         5: 'Correct! CSV-imported survey fields live on Contact records as custom properties and are charted via Custom Reports in Service Analytics.',
         6: 'Correct! Promoter scores (9–10) trigger automated testimonial requests and notify Marketing Team 2 for case studies.'
       };
+
       let score = 0;
       const questions = document.querySelectorAll('.quiz-q');
       questions.forEach(qEl => {
         const qNum = qEl.getAttribute('data-q');
+        const correctVal = qEl.getAttribute('data-correct');
         const selected = qEl.querySelector(`input[name="q${qNum}"]:checked`);
         const fb = document.getElementById(`fb-${qNum}`);
-        if (selected && selected.value === qEl.getAttribute('data-correct')) {
+
+        if (selected && selected.value === correctVal) {
           score++;
           fb.className = 'quiz-feedback correct';
           fb.textContent = explanations[qNum];
@@ -1681,11 +2415,13 @@
           fb.textContent = 'Not quite. ' + explanations[qNum];
         }
       });
+
       const banner = document.getElementById('quiz-score-banner');
       banner.style.display = 'block';
       banner.textContent = `Your Score: ${score} / ${questions.length} (${Math.round((score / questions.length) * 100)}%) — Review any highlighted feedback above before starting live client tickets.`;
     }
 
+    // Copy HTML Module Template for Marketing & Sales Colleagues
     function copyModuleTemplate(teamName) {
       const snippet = `<article class="module-card" data-module>
   <div class="module-header" onclick="toggleSingleModule(this)">
@@ -1700,23 +2436,35 @@
   </div>
   <div class="module-body">
     <div class="mod-subblock">
-      <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; How It Works</div>
+      <div class="mod-subblock-title"><span class="step-tag">1</span> What is the Function &amp; What Does It Do?</div>
       <div class="func-grid">
-        <div class="func-box"><h5>General Functionality</h5><p>[Describe general HubSpot functionality here]</p></div>
-        <div class="func-box csg"><h5>Specific Application &amp; Value for CSG</h5><p>[Describe how CSG uses this tool across semesters]</p></div>
+        <div class="func-box">
+          <h5>General Functionality</h5>
+          <p>[Describe general HubSpot functionality here]</p>
+        </div>
+        <div class="func-box csg">
+          <h5>CSG Specific Application</h5>
+          <p>[Describe how CSG uses this tool across semesters]</p>
+        </div>
       </div>
     </div>
     <div class="mod-subblock">
-      <div class="mod-subblock-title"><span class="step-tag">2</span> Step-by-Step Guide: Setup, Usage &amp; Data Input</div>
+      <div class="mod-subblock-title"><span class="step-tag">2</span> How to Implement, Use &amp; Input Our Information (Step-by-Step)</div>
       <div class="step-list">
-        <div class="step-item"><h5>Step 1: Setup &amp; Navigation</h5><ol><li>Navigate to <code class="ui-path">[Menu &gt; Submenu]</code> and click <strong>[Button]</strong>.</li></ol></div>
+        <div class="step-item">
+          <h5>Step 1: Setup &amp; Navigation</h5>
+          <ol>
+            <li>Navigate to <code class="ui-path">[Menu &gt; Submenu]</code> and click <strong>[Button]</strong>.</li>
+          </ol>
+        </div>
       </div>
     </div>
     <div class="mod-subblock">
-      <div class="mod-subblock-title"><span class="step-tag">3</span> Permissions &amp; Academy Links</div>
+      <div class="mod-subblock-title"><span class="step-tag">3</span> Links to HubSpot Academy Videos &amp; Knowledge Base</div>
       <div class="academy-links-box">
-        <div class="perm-note"><strong>Permissions:</strong> [Core Seat vs. Pro Seat permissions]</div>
-        <ul><li><span class="link-type-badge">Lesson</span> <strong>[Lesson Title]</strong> &rarr; <a href="https://academy.hubspot.com/" target="_blank" rel="noopener">https://academy.hubspot.com/</a></li></ul>
+        <ul>
+          <li><span class="link-type-badge">Full Lesson</span> <strong>[Lesson Title]</strong> &rarr; <a href="https://academy.hubspot.com/" target="_blank" rel="noopener">https://academy.hubspot.com/</a></li>
+        </ul>
       </div>
     </div>
   </div>
